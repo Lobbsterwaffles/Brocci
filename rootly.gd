@@ -116,6 +116,12 @@ func _ready():
 	)
 	$poison_timer.start(0.25)
 
+	get_node("%ui/hud/pause_btn").pressed.connect(
+		func():
+			get_tree().paused = true
+			get_node("%ui/pausemenu").show()
+	)
+
 func player_poison():
 	print("Poisonge")
 	var b = scn_poison.instantiate()

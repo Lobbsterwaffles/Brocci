@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://8ai8ue4oekre"]
+
+[ext_resource type="Script" uid="uid://q3bxca0qh6iw" path="res://pausemenu.gd" id="1_0mw5b"]
+
+[node name="pausemenu" type="Control" unique_id=1999936203]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0mw5b")
+
+[node name="Label" type="Label" parent="." unique_id=736317080]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_top = 104.0
+offset_right = 47.0
+offset_bottom = 127.0
+grow_horizontal = 2
+text = "PAUSE MENU"
+
+[node name="resume_btn" type="Button" parent="." unique_id=1408778258]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 184.0
+offset_right = 613.0
+offset_bottom = 215.0
+text = "RESUME"
