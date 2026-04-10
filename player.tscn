@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://eh5p4jwa3qvu"]
 
 [ext_resource type="Script" uid="uid://dwqlew8glx36v" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://qqia08q6862j" path="res://player_hurt.gd" id="2_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
 size = Vector2(18, 42)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
+radius = 58.034473
 
 [node name="Player" type="CharacterBody2D" unique_id=1877699559]
 script = ExtResource("1_4flbx")
@@ -12,3 +16,10 @@ script = ExtResource("1_4flbx")
 shape = SubResource("RectangleShape2D_sh265")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1144933044]
+
+[node name="hurt" type="Area2D" parent="." unique_id=1124064117]
+monitoring = false
+script = ExtResource("2_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt" unique_id=124356878]
+shape = SubResource("CircleShape2D_4flbx")

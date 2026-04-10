@@ -14,3 +14,12 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="hud" parent="ui" unique_id=1462350320 instance=ExtResource("3_1lfxc")]
+
+[node name="Label" type="Label" parent="." unique_id=1156310192]
+offset_left = -2040.0
+offset_top = -776.0
+offset_right = 2208.0
+offset_bottom = 863.0
+theme_override_font_sizes/font_size = 600
+text = "BACKGROUND
+TEXTURE LMAO"

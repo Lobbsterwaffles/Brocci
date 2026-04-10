@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbkdfu7hppgrg"]
 
-[ext_resource type="PackedScene" uid="uid://b4m0iv6td84gi" path="res://card.tscn" id="1_37p78"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2snw"]
+bg_color = Color(1, 0, 0, 1)
 
 [node name="hud" type="Control" unique_id=1462350320]
 layout_mode = 3
@@ -20,29 +21,68 @@ anchor_bottom = 1.0
 offset_top = -27.0
 grow_horizontal = 2
 grow_vertical = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="card_container" type="HBoxContainer" parent="." unique_id=371928176]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = -0.5882353
 anchor_right = 1.0
 anchor_bottom = 0.76500005
-offset_top = -80.0
 offset_bottom = -0.040008545
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="card_container" unique_id=1722330011]
-layout_mode = 2
-text = "ONE"
+[node name="card_hero" type="VBoxContainer" parent="." unique_id=1818059824]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7777778
+anchor_top = -2.8235295
+anchor_right = 0.9578334
+anchor_bottom = -0.41135293
+offset_bottom = -0.055999756
+alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Button2" type="Button" parent="card_container" unique_id=1957730762]
-layout_mode = 2
-text = "TWO"
+[node name="Timer" type="Timer" parent="card_hero" unique_id=318591832]
 
-[node name="ColorRect" type="ColorRect" parent="card_container" unique_id=549485955]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-color = Color(1, 0, 1, 1)
+[node name="buff_bar" type="HBoxContainer" parent="." unique_id=129396347]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35867363
+anchor_top = -0.99958825
+anchor_right = 0.68766665
+anchor_bottom = -0.6890001
+offset_left = -0.1920166
+offset_top = -0.055999756
+offset_right = -0.1920166
+offset_bottom = -0.06398773
+metadata/_edit_use_anchors_ = true
 
-[node name="card" parent="card_container" unique_id=152709326 instance=ExtResource("1_37p78")]
-layout_mode = 2
+[node name="health_bar" type="ProgressBar" parent="." unique_id=1300139619]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0069444445
+anchor_top = -0.82400006
+anchor_right = 0.36094445
+anchor_bottom = -0.625
+offset_top = 0.06401062
+offset_right = 0.19198608
+theme_override_styles/fill = SubResource("StyleBoxFlat_n2snw")
+step = 1.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="health_lbl" type="Label" parent="." unique_id=521148478]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15988891
+anchor_top = -0.8088235
+anchor_right = 0.19488889
+anchor_bottom = -0.63929415
+offset_left = -0.1920166
+offset_right = -0.51200867
+offset_bottom = -0.055992126
+text = "HP: XY%"
+metadata/_edit_use_anchors_ = true

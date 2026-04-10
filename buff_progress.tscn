@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c03ksp6uknhab"]
+
+[ext_resource type="Script" uid="uid://3c7ctkmoy3o4" path="res://buff_progress.gd" id="1_dkw0b"]
+
+[sub_resource type="Gradient" id="Gradient_n2snw"]
+colors = PackedColorArray(0.7529412, 0.2509804, 0.8117647, 1, 0.75325984, 0.25186998, 0.8120912, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_37p78"]
+gradient = SubResource("Gradient_n2snw")
+
+[sub_resource type="Gradient" id="Gradient_64ctp"]
+colors = PackedColorArray(0.2901961, 0.7137255, 0.65882355, 0, 0.2901961, 0.7137255, 0.65882355, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8sq4i"]
+gradient = SubResource("Gradient_64ctp")
+
+[sub_resource type="Gradient" id="Gradient_640wx"]
+colors = PackedColorArray(0.14961314, 0.18729815, 0.8135589, 1, 0.14961314, 0.18729815, 0.8135589, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a2258"]
+gradient = SubResource("Gradient_640wx")
+
+[node name="TextureProgressBar" type="TextureProgressBar" unique_id=418475975]
+custom_minimum_size = Vector2(50, 50)
+max_value = 1.0
+step = 0.01
+value = 0.4
+fill_mode = 4
+texture_under = SubResource("GradientTexture2D_37p78")
+texture_over = SubResource("GradientTexture2D_8sq4i")
+texture_progress = SubResource("GradientTexture2D_a2258")
+script = ExtResource("1_dkw0b")
+
+[node name="Timer" type="Timer" parent="." unique_id=1747788871]
+one_shot = true
+
+[node name="Label" type="Label" parent="." unique_id=443137197]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "XYZ"
+horizontal_alignment = 1
+vertical_alignment = 1
