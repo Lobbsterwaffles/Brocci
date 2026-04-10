@@ -13,7 +13,6 @@ var hitting_player = false
 
 func _ready():
 	health = health_max
-	print("Health ", health, ": Max", health_max)
 	%healthbar.value = health / health_max
 	%Hurt.area_entered.connect(hurt_enter)
 	$Hit.area_entered.connect(hit_enter)
@@ -26,7 +25,8 @@ func hurt_enter(area):
 		return
 	health -= b.damage * ref_player.dmg_mult
 	%healthbar.value = health as float / health_max
-	b.queue_free()
+	if not b.piercing:
+		b.queue_free()
 	if health <= 0:
 		print("I die")
 		queue_free()

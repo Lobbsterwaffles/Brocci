@@ -23,3 +23,5 @@ offset_bottom = 863.0
 theme_override_font_sizes/font_size = 600
 text = "BACKGROUND
 TEXTURE LMAO"
+
+[node name="poison_timer" type="Timer" parent="." unique_id=548715606]

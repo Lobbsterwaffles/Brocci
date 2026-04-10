@@ -1,7 +1,9 @@
 extends Node2D
 
 var scn_enemy = preload("res://enemy.tscn")
+var scn_other_enemy = preload("res://other_enemy.tscn")
 var scn_bullet = preload("res://bullet.tscn")
+var scn_poison = preload("res://poison.tscn")
 var scn_card = preload("res://card.tscn")
 var scn_buff = preload("res://buff_progress.tscn") 
 
@@ -18,10 +20,12 @@ var effect_good = [
 ]
 
 var effect_bad = [
-	["spawn one enemy", func (): spawn_enemy_ring(1)],
-	["spawn two enemies", func (): spawn_enemy_ring(2)],
-	["spawn eight enemies", func (): spawn_enemy_ring(8)],
-	["spawn five enemies", func (): spawn_enemy_ring(5)],
+	["spawn one enemy", func (): spawn_enemy1(1)],
+	# ["spawn two enemies", func (): spawn_enemy1(2)],
+	# ["spawn eight enemies", func (): spawn_enemy1(8)],
+	["spawn five enemies", func (): spawn_enemy1(5)],
+	["spawn other enemies", func (): spawn_enemy2(2)],
+
 ]
 
 var card_def = []
@@ -49,9 +53,12 @@ func mkcard(name, top, bot, ...effects):
 	)
 	return c
 
-func spawn_enemy_ring(n):
+func spawn_enemy1(n): spawn_enemy_ring(n, scn_enemy)
+func spawn_enemy2(n): spawn_enemy_ring(n, scn_other_enemy)
+
+func spawn_enemy_ring(n, scn):
 	for i in range(n):
-		var e = scn_enemy.instantiate()
+		var e = scn.instantiate()
 		var angle = 2 * PI * randf()
 		var radius = 200 + 20 * randf()
 		e.position = %Player.position + radius * Vector2(cos(angle), sin(angle))
@@ -66,6 +73,28 @@ func draw_hand(n = 3):
 	for i in n:
 		draw_card(card_def[i])
 
+
+class PoisonTrail:
+	var i = 0
+	var n = 10
+	var pts = []
+	var scnp = preload("res://poison.tscn")
+
+	func emit(pos):
+		var b = scnp.instantiate()
+		b.position = pos
+		var r
+		if i < n:
+			r = b
+			pts.append(b)
+		else:
+			r = null
+			pts[i % n].position = pos
+		i += 1
+		return r
+
+var ptrail  
+		
 func _ready():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	%Player.shoot.connect(_on_player_shoot)
@@ -77,6 +106,22 @@ func _ready():
 
 	get_node("%ui/hud/card_hero/Timer").timeout.connect(_on_hero_timeout) 
 
+	ptrail = PoisonTrail.new()
+	
+	$poison_timer.timeout.connect(
+		func():
+			var pel = ptrail.emit(%Player.position)
+			if pel:
+				add_child(pel)
+	)
+	$poison_timer.start(0.25)
+
+func player_poison():
+	print("Poisonge")
+	var b = scn_poison.instantiate()
+	b.position = %Player.position
+	b.velocity = Vector2.ZERO
+	add_child(b)
 	
 func _on_player_shoot():
 	var b = scn_bullet.instantiate()
