@@ -131,11 +131,11 @@ func player_poison():
 	add_child(b)
 	
 func _on_player_shoot():
-	# var b = scn_bullet.instantiate()
 	var b = scn_bone.instantiate()
 	b.position = %Player.position
 	var pa = %Player.rotation
-	b.velocity = %Player.velocity + 200 * Vector2(cos(pa), sin(pa))
+	var prv = 200 * Vector2(cos(pa), sin(pa))
+	b.velocity = %Player.velocity + prv
 	add_child(b)
 
 func play_cards():
