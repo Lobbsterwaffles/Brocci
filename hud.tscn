@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cbkdfu7hppgrg"]
+
+[ext_resource type="PackedScene" uid="uid://b4m0iv6td84gi" path="res://card.tscn" id="1_37p78"]
+
+[node name="hud" type="Control" unique_id=1462350320]
+layout_mode = 3
+anchor_top = 0.79012346
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1286720724]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="card_container" type="HBoxContainer" parent="." unique_id=371928176]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.76500005
+offset_top = -80.0
+offset_bottom = -0.040008545
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="card_container" unique_id=1722330011]
+layout_mode = 2
+text = "ONE"
+
+[node name="Button2" type="Button" parent="card_container" unique_id=1957730762]
+layout_mode = 2
+text = "TWO"
+
+[node name="ColorRect" type="ColorRect" parent="card_container" unique_id=549485955]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(1, 0, 1, 1)
+
+[node name="card" parent="card_container" unique_id=152709326 instance=ExtResource("1_37p78")]
+layout_mode = 2

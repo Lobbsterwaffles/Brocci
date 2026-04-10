@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cicxlpwcw0kt7"]
+
+[ext_resource type="Script" uid="uid://m46mf47tssh4" path="res://enemy.gd" id="1_7k104"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xaro"]
+size = Vector2(34, 48)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7k104"]
+radius = 16.0
+height = 48.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1938725651]
+script = ExtResource("1_7k104")
+health_max = null
+speed = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=744162405]
+shape = SubResource("RectangleShape2D_7xaro")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Hurt" type="Area2D" parent="." unique_id=852631434]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt" unique_id=1207868152]
+shape = SubResource("CapsuleShape2D_7k104")
+debug_color = Color(1, 0.6788661, 0.9596366, 0.41960785)

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://p3i87ub5mbpk"]
+
+[ext_resource type="PackedScene" uid="uid://eh5p4jwa3qvu" path="res://player.tscn" id="1_pnx8u"]
+[ext_resource type="Script" uid="uid://bc6wwkahjdech" path="res://rootly.gd" id="1_wpucx"]
+[ext_resource type="PackedScene" uid="uid://cbkdfu7hppgrg" path="res://hud.tscn" id="3_1lfxc"]
+
+[node name="Rootly" type="Node2D" unique_id=1993284389]
+script = ExtResource("1_wpucx")
+
+[node name="Player" parent="." unique_id=1877699559 instance=ExtResource("1_pnx8u")]
+unique_name_in_owner = true
+
+[node name="ui" type="CanvasLayer" parent="." unique_id=4128573]
+unique_name_in_owner = true
+
+[node name="hud" parent="ui" unique_id=1462350320 instance=ExtResource("3_1lfxc")]
