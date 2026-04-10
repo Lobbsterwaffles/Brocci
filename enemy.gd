@@ -25,8 +25,7 @@ func hurt_enter(area):
 		return
 	health -= b.damage * ref_player.dmg_mult
 	%healthbar.value = health as float / health_max
-	if not b.piercing:
-		b.queue_free()
+	b.on_hit()
 	if health <= 0:
 		print("I die")
 		queue_free()

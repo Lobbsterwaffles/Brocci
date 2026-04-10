@@ -6,6 +6,7 @@ var scn_bullet = preload("res://bullet.tscn")
 var scn_poison = preload("res://poison.tscn")
 var scn_card = preload("res://card.tscn")
 var scn_buff = preload("res://buff_progress.tscn") 
+var scn_bone = preload("res://bone.tscn")
 
 var ref_progress
 var ref_cc
@@ -114,7 +115,7 @@ func _ready():
 			if pel:
 				add_child(pel)
 	)
-	$poison_timer.start(0.25)
+	# $poison_timer.start(0.25)
 
 	get_node("%ui/hud/pause_btn").pressed.connect(
 		func():
@@ -130,7 +131,8 @@ func player_poison():
 	add_child(b)
 	
 func _on_player_shoot():
-	var b = scn_bullet.instantiate()
+	# var b = scn_bullet.instantiate()
+	var b = scn_bone.instantiate()
 	b.position = %Player.position
 	var pa = %Player.rotation
 	b.velocity = %Player.velocity + 200 * Vector2(cos(pa), sin(pa))
