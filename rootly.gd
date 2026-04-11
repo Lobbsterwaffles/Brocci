@@ -115,7 +115,7 @@ func _ready():
 			if pel:
 				add_child(pel)
 	)
-	# $poison_timer.start(0.25)
+	$poison_timer.start(0.25)
 
 	get_node("%ui/hud/pause_btn").pressed.connect(
 		func():

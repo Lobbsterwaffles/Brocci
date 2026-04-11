@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cjmyshn1tyqg3"]
+
+[ext_resource type="Script" uid="uid://555rocei10mn" path="res://bone.gd" id="1_y86vo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jhw1f"]
+radius = 8.0
+height = 64.0
+
+[node name="bone" type="Area2D" unique_id=357693241]
+script = ExtResource("1_y86vo")
+damage = 9999
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=397003253]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_jhw1f")
+debug_color = Color(1, 0, 0.75, 0.41960785)

@@ -1,9 +1,29 @@
 [gd_scene format=3 uid="uid://cym8s6o0g2gg3"]
 
 [ext_resource type="Script" uid="uid://bm5edgqo6xa1q" path="res://poison.gd" id="1_710si"]
+[ext_resource type="Texture2D" uid="uid://b4buejodpdlu7" path="res://Sprites/Effects/poison0.png" id="2_pjqmx"]
+[ext_resource type="Texture2D" uid="uid://dqs4aubn60qhw" path="res://Sprites/Effects/poison1.png" id="3_s7g7s"]
+[ext_resource type="Texture2D" uid="uid://cld2gm043uqu" path="res://Sprites/Effects/poison2.png" id="4_txvim"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rtl8c"]
 radius = 64.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k83p6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pjqmx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s7g7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_txvim")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="poison" type="Area2D" unique_id=357693241]
 script = ExtResource("1_710si")
@@ -11,3 +31,9 @@ script = ExtResource("1_710si")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=397003253]
 shape = SubResource("CircleShape2D_rtl8c")
 debug_color = Color(1, 0, 0.75, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=992339409]
+position = Vector2(-9.094947e-13, -15.999999)
+scale = Vector2(0.3125, 0.3125)
+sprite_frames = SubResource("SpriteFrames_k83p6")
+frame_progress = 0.080891825
