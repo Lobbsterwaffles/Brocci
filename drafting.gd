@@ -15,14 +15,6 @@ func incc(e):
 	cc.add_child(e)
 	return cc
 
-func textcard(a = "A", b = "B", c = "C", d = "D"):
-	var c1 = scn_qc.instantiate()
-	c1.get_node("%topleft").add_child(tlabel(a))
-	c1.get_node("%topright").add_child(tlabel(b))
-	c1.get_node("%botleft").add_child(tlabel(c))
-	c1.get_node("%botright").add_child(tlabel(d))
-	return c1
-
 
 func mkcard(a,b,c,d):
 	var c1 = scn_qc.instantiate()
@@ -61,22 +53,38 @@ func mkspacer(ratio):
 	return s
 
 func mksprite(tex):
-	var s = Sprite2D.new()
+	# var s = Sprite2D.new()
+	# s.centered = false
+	# s.texture = tex
+	var s = TextureRect.new()
 	s.texture = tex
 	return s
-	
+
+func mscc(ch):
+	var c = CenterContainer.new()
+	c.custom_minimum_size = Vector2(32, 32)
+	c.add_child(ch)
+	return c
+
+func textcard(a = "A", b = "B", c = "C", d = "D"):
+	var c1 = scn_qc.instantiate()
+	c1.get_node("%topleft").add_child(mscc(tlabel(a)))
+	c1.get_node("%topright").add_child(mscc(tlabel(b)))
+	c1.get_node("%botleft").add_child(mscc(tlabel(c)))
+	c1.get_node("%botright").add_child(mscc(tlabel(d)))
+	return c1
 
 func _ready():
 	print("Ffef ", Library.effect_color)
-
+	
 	cards = [
 		textcard("A1", "B1", "C1", "D1"),
 		# textcard("A2", "B2", "C2", "D2"),
 		mkcard(
-			tlabel("A2"),
-			mksprite(Library.effect_color[1]),
-			tlabel("C2"),
-			mksprite(Library.effect_color[0]),
+			mscc(tlabel("A2")),
+			incc(mksprite(Library.effect_color[1])),
+			mscc(tlabel("C2")),
+			incc(mksprite(Library.effect_color[0])),
 		),
 			
 		textcard("A3", "B3", "C3", "D3")
