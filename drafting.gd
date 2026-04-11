@@ -54,15 +54,23 @@ func _ready():
 	%grid.add_child(mkspacer(1))
 
 	$shift_btn.pressed.connect(do_shift)
+	$confirm_btn.pressed.connect(on_confirm)
 
 	for c in cards:
 		c.get_node("btn").pressed.connect(on_click_card.bind(c))
+
 
 func on_click_card(c):
 	for e in cards:
 		e.get_node("highlight").hide()
 	c.get_node("highlight").show()
+	if c == selected_card:
+		card_chosen.emit(c)
 	selected_card = c
+
+func on_confirm():
+	if selected_card:
+		card_chosen.emit(selected_card)
 
 func tween_cubic(n, start, end, defl):
 	var v = end - start

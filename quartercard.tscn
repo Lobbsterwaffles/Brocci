@@ -24,6 +24,7 @@ position = Vector2(0, 140)
 points = PackedVector2Array(0, 0, 200, 0)
 
 [node name="highlight" type="Line2D" parent="." unique_id=172202190]
+visible = false
 points = PackedVector2Array(-24, -24, 224, -24, 224, 304, -24, 304, -24, -24)
 default_color = Color(0.5425, 0.39, 1, 1)
 joint_mode = 2

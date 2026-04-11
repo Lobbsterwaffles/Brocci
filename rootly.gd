@@ -109,11 +109,17 @@ func _ready():
 	get_node("%ui/deck_view/close_btn").pressed.connect(quit_deckview)
 	get_node("%ui/hud/drafting_btn").pressed.connect(begin_drafting)
 
+	get_node("%ui/drafting").card_chosen.connect(on_card_chosen)
+		
 	my_deck.append_array(Library.STARTING_DECK) 
 	for i in HAND_CARDS:
 		draw1()
 
 	# begin_drafting()
+
+func on_card_chosen(c):
+	print("Card chosen ", c)
+	finish_drafting()
 
 func player_poison():
 	print("Poisonge")
@@ -145,7 +151,7 @@ func play_cards():
 	
 func _on_hero_timeout():
 	var hero = get_node("%ui/hud/card_hero")
-	if hero.get_children_count() > 0:
+	if hero.get_child_count() > 0:
 		hero.get_child(0).queue_free()
 	
 func _process(delta):
