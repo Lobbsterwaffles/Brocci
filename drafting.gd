@@ -135,15 +135,15 @@ func do_shift():
 		ptw.tween_property(nodes[i], "global_position", pos[2+i], lanim)
 
 	var tw = create_tween()
-	tw.tween_method(tween_cubic(nodes[-2], pos[-2], pos[1], Vector2(0, -200)), 0.0, 1.0, lanim)
-	tw.parallel().tween_method(tween_cubic(nodes[-1], pos[-1], pos[0], Vector2(0, -200)), 0.0, 1.0, lanim)
+	tw.tween_method(tween_cubic(nodes[-2], pos[-2], pos[0], Vector2(0, -200)), 0.0, 1.0, lanim)
+	tw.parallel().tween_method(tween_cubic(nodes[-1], pos[-1], pos[1], Vector2(0, -200)), 0.0, 1.0, lanim)
 
 	$shift_timer.timeout.connect(
 		func():
 			for i in paths.size() - 2:
 				nodes[i].reparent(parent[2+i])
-			nodes[-1].reparent(parent[0])
-			nodes[-2].reparent(parent[1])
+			nodes[-1].reparent(parent[1])
+			nodes[-2].reparent(parent[0])
 
 	, CONNECT_ONE_SHOT
 	)

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://8ai8ue4oekre"]
 
-[ext_resource type="Script" uid="uid://q3bxca0qh6iw" path="res://pausemenu.gd" id="1_0mw5b"]
+[ext_resource type="Script" uid="uid://q3bxca0qh6iw" path="res://UI/pausemenu.gd" id="1_me0t0"]
+
+[sub_resource type="Theme" id="Theme_mvae3"]
 
 [node name="pausemenu" type="Control" unique_id=1999936203]
 layout_mode = 3
@@ -9,7 +11,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0mw5b")
+script = ExtResource("1_me0t0")
+
+[node name="Panel" type="Panel" parent="." unique_id=620469824]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 69.0
+offset_right = 686.0
+offset_bottom = 291.0
+theme = SubResource("Theme_mvae3")
 
 [node name="Label" type="Label" parent="." unique_id=736317080]
 layout_mode = 1
