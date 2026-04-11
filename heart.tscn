@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://nlhot5vvn31x"]
+[gd_scene format=3 uid="uid://ih0fw5bmxgvc"]
 
-[ext_resource type="Script" uid="uid://bj3lxjh8njpgn" path="res://heart.gd" id="1_7p8dj"]
+[ext_resource type="Script" path="res://heart.gd" id="1_7p8dj"]
 [ext_resource type="Texture2D" uid="uid://32j4d86o7rnx" path="res://Sprites/Effects/HEARTslashbase.png" id="2_pembh"]
 [ext_resource type="Texture2D" uid="uid://ppibcieesme6" path="res://Sprites/Effects/HEARTslashtip.png" id="3_pembh"]
 
@@ -41,7 +41,7 @@ tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 0.22531328),
+"transitions": PackedFloat32Array(1, 0.26794404),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
@@ -52,7 +52,7 @@ tracks/1/path = NodePath("tip:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 1),
+"times": PackedFloat32Array(0, 0.53333336, 1),
 "transitions": PackedFloat32Array(1, 0.22531328, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 0.44, 0.44, 1)]
@@ -88,12 +88,14 @@ position = Vector2(8, 16)
 texture = ExtResource("3_pembh")
 
 [node name="left lobe" type="CollisionShape2D" parent="." unique_id=397003253]
+visible = false
 position = Vector2(-40, -15.999998)
 rotation = -0.80285144
 shape = SubResource("CapsuleShape2D_pembh")
 debug_color = Color(0, 1, 0, 0.41960785)
 
 [node name="right lobe" type="CollisionShape2D" parent="." unique_id=1008637756]
+visible = false
 position = Vector2(32, -16.000015)
 rotation = 0.80285144
 shape = SubResource("CapsuleShape2D_pembh")
