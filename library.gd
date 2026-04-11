@@ -58,9 +58,14 @@ class Card:
 			mscc(mksprite(color_image[bot_color])),
 		)
 
-var starting_deck = [
+var STARTING_DECK = [
 	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
+	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
+
 	Card.new(CardCategory.BUFF, CardColor.YELLOW, CardCategory.SPAWN, CardColor.YELLOW),
+	Card.new(CardCategory.BUFF, CardColor.YELLOW, CardCategory.SPAWN, CardColor.YELLOW),
+
+	Card.new(CardCategory.BUFF, CardColor.GREEN, CardCategory.SPAWN, CardColor.GREEN),
 	Card.new(CardCategory.BUFF, CardColor.GREEN, CardCategory.SPAWN, CardColor.GREEN)
 ]
 

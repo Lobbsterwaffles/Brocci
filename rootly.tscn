@@ -41,3 +41,5 @@ TEXTURE LMAO"
 [node name="poison_timer" type="Timer" parent="." unique_id=548715606]
 
 [node name="bone_timer" type="Timer" parent="." unique_id=1870035271]
+
+[node name="hero_timer" type="Timer" parent="." unique_id=669095560]

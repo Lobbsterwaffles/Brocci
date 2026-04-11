@@ -10,8 +10,10 @@ var scn_bone = preload("res://bone.tscn")
 
 var ref_progress
 var ref_cc
-
-var cards = []
+var ref_lbl_deck
+var ref_lbl_ms
+var ref_lbl_crit
+var HAND_CARDS = 4
 
 var effect_good = [
 	["deal 2x damage", func (): buff_player_dmg(2, 10)],
@@ -29,31 +31,6 @@ var effect_bad = [
 
 ]
 
-var card_def = []
-
-func _init(n_pool = 10):
-	var good = []
-	var bad = []
-	while good.size() < n_pool:
-		good.append_array(effect_good)
-	while bad.size() < n_pool:
-		bad.append_array(effect_bad)
-	good.shuffle()
-	for i in n_pool:
-		card_def.append(mkcard("", good[i][0], bad[i][0], good[i][1], bad[i][1]))
-
-func mkcard(name, top, bot, ...effects):
-	var c = scn_card.instantiate()
-	c.get_node("name").text = name
-	c.get_node("toptext").text = top
-	c.get_node("bottext").text = bot
-	c.play.connect(
-		func ():
-			for e in effects:
-				e.call()
-	)
-	return c
-
 func spawn_enemy1(n): spawn_enemy_ring(n, scn_enemy)
 func spawn_enemy2(n): spawn_enemy_ring(n, scn_other_enemy)
 
@@ -64,16 +41,6 @@ func spawn_enemy_ring(n, scn):
 		var radius = 200 + 20 * randf()
 		e.position = %Player.position + radius * Vector2(cos(angle), sin(angle))
 		add_child(e)
-
-func draw_card(c):
-	cards.append(c)
-	ref_cc.add_child(c)
-
-func draw_hand(n = 3):
-	card_def.shuffle()
-	for i in n:
-		draw_card(card_def[i])
-
 
 class PoisonTrail:
 	var i = 0
@@ -96,16 +63,32 @@ class PoisonTrail:
 
 var ptrail  
 		
+var my_deck = []
+var my_hand = []
+var my_discard = []
+
+func draw1():
+	if my_deck.is_empty():
+		my_deck = my_discard
+		my_discard = []
+
+	var c = my_deck.pop_front()
+	my_hand.append(c)
+	ref_cc.add_child(c.as_node())
+
+
 func _ready():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	%Player.shoot.connect(_on_player_shoot)
 	ref_progress = get_node("%ui/hud/ProgressBar")
 	ref_cc = get_node("%ui/hud/card_container")
+	ref_lbl_deck = get_node("ui/hud/%lbl_deck")
+	ref_lbl_ms = get_node("ui/hud/%lbl_ms")
+	ref_lbl_crit = get_node("ui/hud/%lbl_crit")
 
-	draw_hand()
 	process_mode = ProcessMode.PROCESS_MODE_INHERIT
 
-	get_node("%ui/hud/card_hero/Timer").timeout.connect(_on_hero_timeout) 
+	$hero_timer.timeout.connect(_on_hero_timeout) 
 
 	ptrail = PoisonTrail.new()
 	
@@ -124,6 +107,11 @@ func _ready():
 	)
 	get_node("%ui/hud/deck_btn").pressed.connect(show_deckview)
 	get_node("%ui/deck_view/close_btn").pressed.connect(quit_deckview)
+
+	my_deck.append_array(Library.STARTING_DECK) 
+	for i in HAND_CARDS:
+		draw1()
+
 	# begin_drafting()
 
 func player_poison():
@@ -143,22 +131,28 @@ func _on_player_shoot():
 
 func play_cards():
 	ref_progress.value = 0
-	if cards.is_empty():
-		draw_hand()
+	if my_hand.is_empty():
+		for i in HAND_CARDS:
+			draw1()
 		return
 
-	var c = cards.pop_front()
-	c.reparent(get_node("ui/hud/card_hero"), false)
-	get_node("%ui/hud/card_hero/Timer").start(1)
-	c.play.emit()
+	var c = my_hand.pop_front()
+	var n = ref_cc.get_child(0)
+	n.reparent(get_node("ui/hud/card_hero"), false)
+	$hero_timer.start(1)
+	my_discard.append(c)
 	
 func _on_hero_timeout():
 	var hero = get_node("%ui/hud/card_hero")
-	var hnc = hero.get_child_count()
-	if hnc > 1:
-		hero.remove_child(hero.get_child(-1))
+	var ch = hero.get_child(-1)
+	if ch:
+		ch.queue_free()
 	
 func _process(delta):
+	ref_lbl_deck.text = "%d / %d" % [my_deck.size(), my_discard.size()]
+	ref_lbl_ms.text = "%d" % [%Player.speed]
+	ref_lbl_crit.text = "%d%%" % [(100 * %Player.crit) as int]
+
 	ref_progress.value += 50*delta
 	if ref_progress.value >= 100:
 		call_deferred("play_cards")

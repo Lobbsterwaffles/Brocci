@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var health_max = 100
 @export var speed = 290
 @export var dmg_mult = 1.0
+@export var crit = 0.05
 
 signal shoot()
 signal hit(dmg)

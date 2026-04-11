@@ -38,9 +38,9 @@ func mkspacer(ratio):
 
 func _ready():
 	cards = [
-		Library.textcard("A1", "B1", "C1", "D1"),
 		Library.random_card(),
-		Library.textcard("A3", "B3", "C3", "D3")
+		Library.random_card(),
+		Library.random_card(),
 	]
 
 	%grid.add_child(mkspacer(1))

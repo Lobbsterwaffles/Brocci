@@ -14,11 +14,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1286720724]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -27.0
+anchors_preset = -1
+anchor_left = 0.7847222
+anchor_top = -0.29411766
+anchor_right = 0.9930556
+anchor_bottom = -0.09558824
 grow_horizontal = 2
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
@@ -26,12 +26,14 @@ metadata/_edit_use_anchors_ = true
 [node name="card_container" type="HBoxContainer" parent="." unique_id=371928176]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = -0.5882353
-anchor_right = 1.0
-anchor_bottom = 0.76500005
+anchor_left = 0.020833334
+anchor_top = -1.1764706
+anchor_right = 0.7777778
+anchor_bottom = 0.8826471
 offset_bottom = -0.040008545
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 metadata/_edit_use_anchors_ = true
 
 [node name="card_hero" type="VBoxContainer" parent="." unique_id=1818059824]
@@ -44,8 +46,6 @@ anchor_bottom = -0.41135293
 offset_bottom = -0.055999756
 alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="Timer" type="Timer" parent="card_hero" unique_id=318591832]
 
 [node name="buff_bar" type="HBoxContainer" parent="." unique_id=129396347]
 layout_mode = 1
@@ -63,10 +63,10 @@ metadata/_edit_use_anchors_ = true
 [node name="health_bar" type="ProgressBar" parent="." unique_id=1300139619]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0069444445
-anchor_top = -0.82400006
-anchor_right = 0.36094445
-anchor_bottom = -0.625
+anchor_left = 0.7847222
+anchor_top = -0.059294194
+anchor_right = 0.99288887
+anchor_bottom = 0.13970588
 offset_top = 0.06401062
 offset_right = 0.19198608
 theme_override_styles/fill = SubResource("StyleBoxFlat_n2snw")
@@ -77,10 +77,10 @@ metadata/_edit_use_anchors_ = true
 [node name="health_lbl" type="Label" parent="." unique_id=521148478]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.15988891
-anchor_top = -0.8088235
-anchor_right = 0.19488889
-anchor_bottom = -0.63929415
+anchor_left = 0.8612778
+anchor_top = -0.05882353
+anchor_right = 0.9171111
+anchor_bottom = 0.11070588
 offset_left = -0.1920166
 offset_right = -0.51200867
 offset_bottom = -0.055992126
@@ -107,3 +107,45 @@ anchor_right = 0.9418403
 anchor_bottom = -3.5367646
 text = "deck"
 metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1948235415]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7847222
+anchor_top = 0.1764706
+anchor_right = 0.9930556
+anchor_bottom = 0.7647059
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer" unique_id=370635663]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="PanelContainer/GridContainer" unique_id=490739994]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Deck"
+
+[node name="lbl_deck" type="Label" parent="PanelContainer/GridContainer" unique_id=60099378]
+unique_name_in_owner = true
+layout_mode = 2
+text = "X/Y"
+
+[node name="Label3" type="Label" parent="PanelContainer/GridContainer" unique_id=204652363]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move speed"
+
+[node name="lbl_ms" type="Label" parent="PanelContainer/GridContainer" unique_id=1722068646]
+unique_name_in_owner = true
+layout_mode = 2
+text = "XYZ"
+
+[node name="Label5" type="Label" parent="PanelContainer/GridContainer" unique_id=581750039]
+layout_mode = 2
+text = "Crit chance"
+
+[node name="lbl_crit" type="Label" parent="PanelContainer/GridContainer" unique_id=1454173259]
+unique_name_in_owner = true
+layout_mode = 2
+text = "XYZ"
