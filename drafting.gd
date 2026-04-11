@@ -12,25 +12,18 @@ func incc(e):
 	cc.add_child(e)
 	return cc
 
-func testrow(card):
+func testrow(i):
 	var h = HBoxContainer.new()
 	var lbtn = Button.new()
 	lbtn.text = "L"
 	var rbtn = Button.new()
 	rbtn.text = "R"
 	h.add_child(incc(lbtn))
-	h.add_child(incc(card))
+	h.add_child(incc(card_nodes[i]))
 	h.add_child(incc(rbtn))
 	
-	lbtn.pressed.connect(
-		func():
-			do_vswap($shift_timer, card, "%topleft", "%botleft", "%topright", "%botright")
-	)
-	rbtn.pressed.connect(
-		func():
-			do_vswap($shift_timer, card, "%botright", "%topright", "%topleft", "%botleft")
-	)
-	
+	lbtn.pressed.connect(do_vswap_cat.bind(i))
+	rbtn.pressed.connect(do_vswap_color.bind(i))	
 	return h
 
 func mkspacer(ratio):
@@ -50,11 +43,11 @@ func _ready():
 		card_nodes.append(c.as_node())
 
 	%grid.add_child(mkspacer(1))
-	%grid.add_child(testrow(card_nodes[0]))
+	%grid.add_child(testrow(0))
 	%grid.add_child(mkspacer(2))
-	%grid.add_child(testrow(card_nodes[1]))
+	%grid.add_child(testrow(1))
 	%grid.add_child(mkspacer(2))
-	%grid.add_child(testrow(card_nodes[2]))
+	%grid.add_child(testrow(2))
 	%grid.add_child(mkspacer(1))
 
 	$shift_btn.pressed.connect(do_shift)
@@ -82,8 +75,20 @@ func tween_cubic(n, start, end, defl):
 	return func(t):
 		n.global_position = start.cubic_interpolate(end, pre, post, t)
 
-func do_vswap(timer, card, top, bot, o1, o2):
-	if not timer.is_stopped():
+func do_vswap_cat(i):
+	var temp = cards[i].top_cat
+	cards[i].top_cat = cards[i].bot_cat
+	cards[i].bot_cat = temp
+	do_vswap_anim(card_nodes[i], "%topleft", "%botleft", "%topright", "%botright")
+
+func do_vswap_color(i):
+	var temp = cards[i].top_color
+	cards[i].top_color = cards[i].bot_color
+	cards[i].bot_color = temp
+	do_vswap_anim(card_nodes[i], "%botright", "%topright", "%topleft", "%botleft")
+
+func do_vswap_anim(card, top, bot, o1, o2):
+	if not $shift_timer.is_stopped():
 		return
 
 	var tc = card.get_node(top).get_child(0)
@@ -107,7 +112,7 @@ func do_vswap(timer, card, top, bot, o1, o2):
 	tw.tween_method(t2b, 0.0, 1.0, lanim)
 	tw.parallel().tween_method(b2t, 0.0, 1.0, lanim)
 
-	timer.timeout.connect(
+	$shift_timer.timeout.connect(
 		func():		
 			tc.reparent(card.get_node(bot))
 			bc.reparent(card.get_node(top))
@@ -115,7 +120,7 @@ func do_vswap(timer, card, top, bot, o1, o2):
 			c2.reparent(card.get_node(o2))
 	, CONNECT_ONE_SHOT
 	)
-	timer.start(lanim)
+	$shift_timer.start(lanim)
 
 func do_shift():
 	if not $shift_timer.is_stopped():
@@ -144,6 +149,9 @@ func do_shift():
 	for i in paths.size() - 2:
 		var ptw = create_tween()
 		ptw.tween_property(nodes[i], "global_position", pos[2+i], lanim)
+
+	cards[0].swap_top(cards[2])
+	cards[1].swap_top(cards[2])
 
 	var tw = create_tween()
 	tw.tween_method(tween_cubic(nodes[-2], pos[-2], pos[0], Vector2(0, -200)), 0.0, 1.0, lanim)

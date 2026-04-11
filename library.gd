@@ -58,6 +58,14 @@ class Card:
 			mscc(mksprite(color_image[bot_color])),
 		)
 
+	func swap_top(other):
+		var cat = top_cat
+		var color = top_color
+		top_cat = other.top_cat
+		top_color = other.top_color
+		other.top_cat = cat
+		other.top_color = color
+
 var STARTING_DECK = [
 	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
 	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
