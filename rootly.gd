@@ -123,7 +123,7 @@ func _ready():
 			get_node("%ui/pausemenu").show()
 	)
 
-	begin_drafting()
+	# begin_drafting()
 
 func player_poison():
 	print("Poisonge")
@@ -189,7 +189,7 @@ func begin_drafting():
 	get_tree().paused = true
 	get_node("%ui/drafting").show()
 	get_node("%ui/drafting").process_mode = ProcessMode.PROCESS_MODE_WHEN_PAUSED
-	get_node("%ui/drafting").show_cards(card_def.slice(0, 3))
+	# get_node("%ui/drafting").show_cards(card_def.slice(0, 3))
 
 	
 func finish_drafting():

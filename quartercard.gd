@@ -18,15 +18,3 @@ func mkspacer(ratio):
 	s.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	s.size_flags_stretch_ratio = ratio
 	return s
-
-func do_swap(x, y):
-	assert(x.get_child_count() < 2)
-	assert(y.get_child_count() < 2)
-	x.get_child(0).reparent(y, false)
-	y.get_child(0).reparent(x, false)
-
-func vswap_left():
-	do_swap(%topleft, %botleft)
-
-func vswap_right():
-	do_swap(%topright, %botright)
