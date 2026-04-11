@@ -120,6 +120,7 @@ func _ready():
 func on_card_chosen(c):
 	print("Card chosen ", c)
 	finish_drafting()
+	my_deck.append(c)
 
 func player_poison():
 	print("Poisonge")
@@ -201,10 +202,13 @@ func show_deckview():
 	get_tree().paused = true
 	get_node("%ui/deck_view").show()
 	get_node("%ui/deck_view").process_mode = ProcessMode.PROCESS_MODE_WHEN_PAUSED
-	get_node("%ui/deck_view").populate()
+	var all_cards = my_deck + my_hand + my_discard
+	print("Cs ", all_cards)
+	get_node("%ui/deck_view").populate(all_cards)
 
 func quit_deckview():
 	get_node("%ui/deck_view").hide()
+	get_node("%ui/deck_view").clear()
 	get_node("%ui/deck_view").process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	get_tree().paused = false
 

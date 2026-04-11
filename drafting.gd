@@ -1,8 +1,9 @@
 extends Control
 
 
-var cards = [] 
-var selected_card = null
+var cards = []
+var card_nodes = [] 
+var selected_card_index = null
 
 signal card_chosen(card)
 
@@ -40,37 +41,41 @@ func mkspacer(ratio):
 
 func _ready():
 	cards = [
-		Library.random_card().as_node(),
-		Library.random_card().as_node(),
-		Library.random_card().as_node(),
+		Library.random_card(),
+		Library.random_card(),
+		Library.random_card(),
 	]
+	card_nodes = []
+	for c in cards:
+		card_nodes.append(c.as_node())
 
 	%grid.add_child(mkspacer(1))
-	%grid.add_child(testrow(cards[0]))
+	%grid.add_child(testrow(card_nodes[0]))
 	%grid.add_child(mkspacer(2))
-	%grid.add_child(testrow(cards[1]))
+	%grid.add_child(testrow(card_nodes[1]))
 	%grid.add_child(mkspacer(2))
-	%grid.add_child(testrow(cards[2]))
+	%grid.add_child(testrow(card_nodes[2]))
 	%grid.add_child(mkspacer(1))
 
 	$shift_btn.pressed.connect(do_shift)
 	$confirm_btn.pressed.connect(on_confirm)
 
-	for c in cards:
-		c.get_node("btn").pressed.connect(on_click_card.bind(c))
+	for i in card_nodes.size():
+		card_nodes[i].get_node("btn").pressed.connect(on_click_card.bind(i))
 
 
-func on_click_card(c):
-	for e in cards:
+func on_click_card(i):
+	print("O C C ", i)
+	for e in card_nodes:
 		e.get_node("highlight").hide()
-	c.get_node("highlight").show()
-	if c == selected_card:
-		card_chosen.emit(c)
-	selected_card = c
+	card_nodes[i].get_node("highlight").show()
+	if i == selected_card_index:
+		card_chosen.emit(cards[i])
+	selected_card_index = i
 
 func on_confirm():
-	if selected_card:
-		card_chosen.emit(selected_card)
+	if selected_card_index:
+		card_chosen.emit(cards[selected_card_index])
 
 func tween_cubic(n, start, end, defl):
 	var v = end - start
@@ -129,7 +134,7 @@ func do_shift():
 	var nodes = []
 	var parent = []
 	for p in paths:
-		var q = cards[p[0]].get_node(p[1])
+		var q = card_nodes[p[0]].get_node(p[1])
 		var n = q.get_child(0)
 		nodes.append(n)
 		parent.append(q)
