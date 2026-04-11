@@ -1,29 +1,13 @@
 extends Control
 
-@onready var scn_qc = load("res://quartercard.tscn")
 
 var cards = [] 
 
-func tlabel(t):
-	var lbl = Label.new()
-	lbl.text = t
-	lbl.horizontal_alignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_CENTER
-	return lbl
 
 func incc(e):
 	var cc = CenterContainer.new()
 	cc.add_child(e)
 	return cc
-
-
-func mkcard(a,b,c,d):
-	var c1 = scn_qc.instantiate()
-	c1.get_node("%topleft").add_child((a))
-	c1.get_node("%topright").add_child((b))
-	c1.get_node("%botleft").add_child((c))
-	c1.get_node("%botright").add_child((d))
-	return c1
-
 
 func testrow(card):
 	var h = HBoxContainer.new()
@@ -52,42 +36,11 @@ func mkspacer(ratio):
 	s.size_flags_stretch_ratio = ratio
 	return s
 
-func mksprite(tex):
-	# var s = Sprite2D.new()
-	# s.centered = false
-	# s.texture = tex
-	var s = TextureRect.new()
-	s.texture = tex
-	return s
-
-func mscc(ch):
-	var c = CenterContainer.new()
-	c.custom_minimum_size = Vector2(32, 32)
-	c.add_child(ch)
-	return c
-
-func textcard(a = "A", b = "B", c = "C", d = "D"):
-	var c1 = scn_qc.instantiate()
-	c1.get_node("%topleft").add_child(mscc(tlabel(a)))
-	c1.get_node("%topright").add_child(mscc(tlabel(b)))
-	c1.get_node("%botleft").add_child(mscc(tlabel(c)))
-	c1.get_node("%botright").add_child(mscc(tlabel(d)))
-	return c1
-
 func _ready():
-	print("Ffef ", Library.effect_color)
-	
 	cards = [
-		textcard("A1", "B1", "C1", "D1"),
-		# textcard("A2", "B2", "C2", "D2"),
-		mkcard(
-			mscc(tlabel("A2")),
-			incc(mksprite(Library.effect_color[1])),
-			mscc(tlabel("C2")),
-			incc(mksprite(Library.effect_color[0])),
-		),
-			
-		textcard("A3", "B3", "C3", "D3")
+		Library.textcard("A1", "B1", "C1", "D1"),
+		Library.random_card(),
+		Library.textcard("A3", "B3", "C3", "D3")
 	]
 
 	%grid.add_child(mkspacer(1))

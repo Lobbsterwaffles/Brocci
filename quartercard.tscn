@@ -12,6 +12,8 @@ corner_radius_bottom_left = 30
 [node name="quartercard" type="PanelContainer" unique_id=879739545]
 custom_minimum_size = Vector2(200, 280)
 anchors_preset = -1
+offset_right = -200.0
+offset_bottom = -280.0
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vebna")
 script = ExtResource("1_mhoas")
@@ -23,7 +25,6 @@ points = PackedVector2Array(0, 0, 200, 0)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=988171434]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 0
 alignment = 1
@@ -32,26 +33,29 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 100
+alignment = 1
 
 [node name="topleft" type="CenterContainer" parent="VBoxContainer/topbox" unique_id=166262908]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="topright" type="CenterContainer" parent="VBoxContainer/topbox" unique_id=1901073329]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="botbox" type="HBoxContainer" parent="VBoxContainer" unique_id=2315528]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 100
 
 [node name="botleft" type="CenterContainer" parent="VBoxContainer/botbox" unique_id=300271843]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="botright" type="CenterContainer" parent="VBoxContainer/botbox" unique_id=1658909989]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
