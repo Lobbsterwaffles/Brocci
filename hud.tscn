@@ -149,3 +149,13 @@ text = "Crit chance"
 unique_name_in_owner = true
 layout_mode = 2
 text = "XYZ"
+
+[node name="drafting_btn" type="Button" parent="." unique_id=808254303]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7847222
+anchor_top = -0.5661765
+anchor_right = 0.9930556
+anchor_bottom = -0.3382353
+text = "drafting"
+metadata/_edit_use_anchors_ = true

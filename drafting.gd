@@ -38,9 +38,9 @@ func mkspacer(ratio):
 
 func _ready():
 	cards = [
-		Library.random_card(),
-		Library.random_card(),
-		Library.random_card(),
+		Library.random_card().as_node(),
+		Library.random_card().as_node(),
+		Library.random_card().as_node(),
 	]
 
 	%grid.add_child(mkspacer(1))
@@ -52,6 +52,15 @@ func _ready():
 	%grid.add_child(mkspacer(1))
 
 	$shift_btn.pressed.connect(do_shift)
+
+	for c in cards:
+		c.get_node("btn").pressed.connect(on_click_card.bind(c))
+
+func on_click_card(c):
+	print("Cliiuck card ", c)
+	for e in cards:
+		e.get_node("highlight").hide()
+	c.get_node("highlight").show()
 
 func tween_cubic(n, start, end, defl):
 	var v = end - start

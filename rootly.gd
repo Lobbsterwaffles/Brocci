@@ -107,6 +107,7 @@ func _ready():
 	)
 	get_node("%ui/hud/deck_btn").pressed.connect(show_deckview)
 	get_node("%ui/deck_view/close_btn").pressed.connect(quit_deckview)
+	get_node("%ui/hud/drafting_btn").pressed.connect(begin_drafting)
 
 	my_deck.append_array(Library.STARTING_DECK) 
 	for i in HAND_CARDS:
@@ -144,9 +145,8 @@ func play_cards():
 	
 func _on_hero_timeout():
 	var hero = get_node("%ui/hud/card_hero")
-	var ch = hero.get_child(-1)
-	if ch:
-		ch.queue_free()
+	if hero.get_children_count() > 0:
+		hero.get_child(0).queue_free()
 	
 func _process(delta):
 	ref_lbl_deck.text = "%d / %d" % [my_deck.size(), my_discard.size()]
@@ -184,8 +184,7 @@ func begin_drafting():
 	get_tree().paused = true
 	get_node("%ui/drafting").show()
 	get_node("%ui/drafting").process_mode = ProcessMode.PROCESS_MODE_WHEN_PAUSED
-	# get_node("%ui/drafting").show_cards(card_def.slice(0, 3))
-
+	
 	
 func finish_drafting():
 	get_node("%ui/drafting").hide()

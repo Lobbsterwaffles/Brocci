@@ -23,6 +23,13 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(0, 140)
 points = PackedVector2Array(0, 0, 200, 0)
 
+[node name="highlight" type="Line2D" parent="." unique_id=172202190]
+points = PackedVector2Array(-24, -24, 224, -24, 224, 304, -24, 304, -24, -24)
+default_color = Color(0.5425, 0.39, 1, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=988171434]
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
@@ -59,3 +66,7 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="btn" type="Button" parent="." unique_id=1011689615]
+layout_mode = 2
+flat = true
