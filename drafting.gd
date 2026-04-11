@@ -63,9 +63,7 @@ func _ready():
 	for i in card_nodes.size():
 		card_nodes[i].get_node("btn").pressed.connect(on_click_card.bind(i))
 
-
 func on_click_card(i):
-	print("O C C ", i)
 	for e in card_nodes:
 		e.get_node("highlight").hide()
 	card_nodes[i].get_node("highlight").show()

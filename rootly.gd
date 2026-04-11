@@ -76,7 +76,6 @@ func draw1():
 	my_hand.append(c)
 	ref_cc.add_child(c.as_node())
 
-
 func _ready():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	%Player.shoot.connect(_on_player_shoot)
@@ -108,7 +107,6 @@ func _ready():
 	get_node("%ui/hud/deck_btn").pressed.connect(show_deckview)
 	get_node("%ui/deck_view/close_btn").pressed.connect(quit_deckview)
 	get_node("%ui/hud/drafting_btn").pressed.connect(begin_drafting)
-
 	get_node("%ui/drafting").card_chosen.connect(on_card_chosen)
 		
 	my_deck.append_array(Library.STARTING_DECK) 
@@ -118,7 +116,6 @@ func _ready():
 	# begin_drafting()
 
 func on_card_chosen(c):
-	print("Card chosen ", c)
 	finish_drafting()
 	my_deck.append(c)
 
@@ -148,6 +145,7 @@ func play_cards():
 	var n = ref_cc.get_child(0)
 	n.reparent(get_node("ui/hud/card_hero"), false)
 	$hero_timer.start(1)
+	do_card_effects(c)
 	my_discard.append(c)
 	
 func _on_hero_timeout():
@@ -184,6 +182,9 @@ func gain_max_hp(x):
 	%Player.health_max += x
 	%Player.health += x
 
+func heal(x):
+	%Player.health = min(%Player.health_max, x + %Player.health)
+
 func gain_ms(x):
 	%Player.speed += x
 
@@ -203,7 +204,6 @@ func show_deckview():
 	get_node("%ui/deck_view").show()
 	get_node("%ui/deck_view").process_mode = ProcessMode.PROCESS_MODE_WHEN_PAUSED
 	var all_cards = my_deck + my_hand + my_discard
-	print("Cs ", all_cards)
 	get_node("%ui/deck_view").populate(all_cards)
 
 func quit_deckview():
@@ -211,6 +211,23 @@ func quit_deckview():
 	get_node("%ui/deck_view").clear()
 	get_node("%ui/deck_view").process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	get_tree().paused = false
-
-
 	
+func do_card_effects(card):
+	do_effect_row(card.top_cat, card.top_color)
+
+func do_effect_row(cat, color):
+	match [cat, color]:
+		[Library.CardCategory.GAIN, Library.CardColor.RED]: gain_max_hp(10)
+		[Library.CardCategory.GAIN, Library.CardColor.GREEN]: gain_max_hp(10)
+		[Library.CardCategory.GAIN, Library.CardColor.YELLOW]: gain_ms(10)
+
+		[Library.CardCategory.BUFF, Library.CardColor.RED]: heal(10)
+		[Library.CardCategory.BUFF, Library.CardColor.GREEN]: buff_player_dmg(1.05, 5)
+		[Library.CardCategory.BUFF, Library.CardColor.YELLOW]: buff_player_ms(1.15, 5)
+
+		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy1(2)
+		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy2(2)
+		[Library.CardCategory.SPAWN, Library.CardColor.YELLOW]: spawn_enemy2(2)
+
+		_:
+			print("?? CARD")

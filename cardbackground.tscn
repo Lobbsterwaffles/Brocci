@@ -2,11 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://bpb5ryxraqcx3" path="res://Sprites/blankcard.png" id="1_u56tl"]
 
-[node name="Cardbackground" type="Node2D" unique_id=304676987]
+[node name="Cardbackground" type="Control" unique_id=1384645690]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=486331723]
-offset_right = 285.0
-offset_bottom = 325.0
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 344.0
 texture = ExtResource("1_u56tl")
 patch_margin_left = 20
 patch_margin_top = 20

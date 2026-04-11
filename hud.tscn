@@ -25,16 +25,16 @@ metadata/_edit_use_anchors_ = true
 
 [node name="card_container" type="HBoxContainer" parent="." unique_id=371928176]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.020833334
-anchor_top = -1.1764706
-anchor_right = 0.7777778
-anchor_bottom = 0.8826471
-offset_bottom = -0.040008545
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_top = -289.0
+offset_right = -271.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-metadata/_edit_use_anchors_ = true
+grow_vertical = 0
+theme_override_constants/separation = 30
 
 [node name="card_hero" type="VBoxContainer" parent="." unique_id=1818059824]
 layout_mode = 1

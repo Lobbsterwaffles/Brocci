@@ -2,27 +2,33 @@
 
 [ext_resource type="Theme" uid="uid://smucn33shco0" path="res://UI/card_theme.tres" id="1_7brjw"]
 [ext_resource type="Script" uid="uid://o8pbwq2l85jm" path="res://quartercard.gd" id="1_mhoas"]
-[ext_resource type="PackedScene" uid="uid://dal4r3puvsnaw" path="res://cardbackground.tscn" id="2_nu006"]
+[ext_resource type="Texture2D" uid="uid://bpb5ryxraqcx3" path="res://Sprites/blankcard.png" id="3_7brjw"]
 
 [node name="quartercard" type="Control" unique_id=492484101]
-custom_minimum_size = Vector2(200, 280)
+custom_minimum_size = Vector2(150, 210)
 layout_mode = 3
-anchor_right = 0.17281067
-anchor_bottom = 0.43209878
+anchor_right = 0.1294079
+anchor_bottom = 0.32407406
 offset_right = 0.9221039
-scale = Vector2(0.99538946, 1)
-size_flags_horizontal = 0
+scale = Vector2(0.9608155, 1.0023766)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("1_7brjw")
 script = ExtResource("1_mhoas")
 metadata/_edit_use_anchors_ = true
 
-[node name="Cardbackground" parent="." unique_id=304676987 instance=ExtResource("2_nu006")]
-visibility_layer = 2
-scale = Vector2(0.70006156, 0.8602648)
-
-[node name="Line2D" type="Line2D" parent="." unique_id=1797913439]
-position = Vector2(0, 140)
-points = PackedVector2Array(0, 0, 200, 0)
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=992704774]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_7brjw")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
 [node name="highlight" type="Line2D" parent="." unique_id=172202190]
 visible = false
@@ -32,10 +38,19 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="Line2D" type="Line2D" parent="." unique_id=1902386601]
+scale = Vector2(1, 0.99999994)
+points = PackedVector2Array(0, 103.75343, 149.8727, 103.75343)
+width = 4.0
+default_color = Color(0.06638208, 0.06491372, 0, 1)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=988171434]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 280.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_stretch_ratio = 0.0
 theme = ExtResource("1_7brjw")
 theme_override_constants/separation = 0
@@ -73,7 +88,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="btn" type="Button" parent="." unique_id=1011689615]
+visible = false
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 280.0
 flat = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=2067288405]
+layout_mode = 0
+offset_right = 149.8727
+offset_bottom = 207.50684
