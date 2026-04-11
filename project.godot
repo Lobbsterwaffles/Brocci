@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Library="*uid://d37jiwvh0ag08"
+Library="*res://library.gd"
 
 [input]
 
