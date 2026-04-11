@@ -3,18 +3,20 @@
 [ext_resource type="Script" uid="uid://m46mf47tssh4" path="res://enemy.gd" id="1_7k104"]
 [ext_resource type="StyleBox" uid="uid://3wb0m01bgxrn" path="res://new_style_box_flat.tres" id="2_4gyqm"]
 [ext_resource type="Script" uid="uid://c1i2st1535st0" path="res://enemy_hurt.gd" id="2_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://c441rehy683df" path="res://Sprites/Characters/brocci.png" id="4_iifgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xaro"]
-size = Vector2(34, 48)
+size = Vector2(35, 51)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7k104"]
 radius = 18.0
-height = 52.0
+height = 72.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1938725651]
 script = ExtResource("1_7k104")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=744162405]
+position = Vector2(-0.5, 18.5)
 shape = SubResource("RectangleShape2D_7xaro")
 debug_color = Color(1, 0, 0, 0.41960785)
 
@@ -23,8 +25,15 @@ unique_name_in_owner = true
 script = ExtResource("2_qi2p4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt" unique_id=1207868152]
+position = Vector2(1, -21)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_7k104")
 debug_color = Color(1, 0.6788661, 0.9596366, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurt" unique_id=2045144114]
+position = Vector2(-0.5, 18.5)
+shape = SubResource("RectangleShape2D_7xaro")
+debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="healthbar" type="ProgressBar" parent="." unique_id=630710407]
 unique_name_in_owner = true
@@ -39,9 +48,19 @@ show_percentage = false
 
 [node name="Hit" type="Area2D" parent="." unique_id=29544183]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit" unique_id=509514638]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Hit" unique_id=2055941873]
+position = Vector2(1, -21)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_7k104")
 debug_color = Color(1, 0.6788661, 0.9596366, 0.41960785)
 
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Hit" unique_id=1139307111]
+position = Vector2(-0.5, 18.5)
+shape = SubResource("RectangleShape2D_7xaro")
+debug_color = Color(1, 0, 0, 0.41960785)
+
 [node name="player_hit_timer" type="Timer" parent="." unique_id=566893843]
 wait_time = 0.35
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1722055417]
+texture = ExtResource("4_iifgy")

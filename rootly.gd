@@ -214,8 +214,10 @@ func quit_deckview():
 	
 func do_card_effects(card):
 	do_effect_row(card.top_cat, card.top_color)
+	do_effect_row(card.bot_cat, card.bot_color)
 
 func do_effect_row(cat, color):
+	print("Eff row ", cat, " ", color)
 	match [cat, color]:
 		[Library.CardCategory.GAIN, Library.CardColor.RED]: gain_max_hp(10)
 		[Library.CardCategory.GAIN, Library.CardColor.GREEN]: gain_max_hp(10)
