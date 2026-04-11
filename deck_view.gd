@@ -1,5 +1,9 @@
 extends Control
 
-func _ready():
-	for i in 10:
-		%grid.add_child(Library.random_card().as_node())
+func populate(cards):
+	for c in cards:
+		%grid.add_child(c.as_node())
+
+func clear():
+	for c in %grid.get_children():
+		c.queue_free()
