@@ -2,7 +2,9 @@ extends Control
 
 
 var cards = [] 
+var selected_card = null
 
+signal card_chosen(card)
 
 func incc(e):
 	var cc = CenterContainer.new()
@@ -57,10 +59,10 @@ func _ready():
 		c.get_node("btn").pressed.connect(on_click_card.bind(c))
 
 func on_click_card(c):
-	print("Cliiuck card ", c)
 	for e in cards:
 		e.get_node("highlight").hide()
 	c.get_node("highlight").show()
+	selected_card = c
 
 func tween_cubic(n, start, end, defl):
 	var v = end - start
