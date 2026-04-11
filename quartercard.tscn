@@ -32,7 +32,8 @@ patch_margin_bottom = 20
 
 [node name="highlight" type="Line2D" parent="." unique_id=172202190]
 visible = false
-points = PackedVector2Array(-24, -24, 224, -24, 224, 304, -24, 304, -24, -24)
+position = Vector2(0, 0.99762905)
+points = PackedVector2Array(-8.326261, -7.9810324, 158.19894, -7.9810324, 158.19894, 215.48787, -8.326261, 215.48787, -8.326261, -7.9810324)
 default_color = Color(0.5425, 0.39, 1, 1)
 joint_mode = 2
 begin_cap_mode = 2
@@ -87,14 +88,16 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="btn" type="Button" parent="." unique_id=1011689615]
-visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 280.0
-flat = true
-
 [node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=2067288405]
 layout_mode = 0
 offset_right = 149.8727
 offset_bottom = 207.50684
+
+[node name="btn" type="Button" parent="." unique_id=1011689615]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
