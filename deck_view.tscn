@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://brddvwt0d7e5d"]
+
+[ext_resource type="Script" uid="uid://c1e4ed5t7d8xa" path="res://deck_view.gd" id="1_0fxvb"]
+
+[node name="deck_view" type="Control" unique_id=1345969838]
+process_mode = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0fxvb")
+
+[node name="close_btn" type="Button" parent="." unique_id=477018315]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 608.0
+offset_right = 600.0
+offset_bottom = 639.0
+text = "close"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=2074409410]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -316.0
+offset_bottom = 284.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="grid" type="GridContainer" parent="ScrollContainer" unique_id=1138313339]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+columns = 4
+metadata/_edit_use_anchors_ = true

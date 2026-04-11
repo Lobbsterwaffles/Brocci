@@ -89,12 +89,21 @@ metadata/_edit_use_anchors_ = true
 
 [node name="pause_btn" type="Button" parent="." unique_id=594217292]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -56.0
-offset_top = -512.0
-offset_right = -1.0
-offset_bottom = -481.0
+anchors_preset = -1
+anchor_left = 0.9513889
+anchor_top = -3.764706
+anchor_right = 0.9991319
+anchor_bottom = -3.5367646
 grow_horizontal = 0
 text = "pause"
+metadata/_edit_use_anchors_ = true
+
+[node name="deck_btn" type="Button" parent="." unique_id=494368105]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9027778
+anchor_top = -3.764706
+anchor_right = 0.9418403
+anchor_bottom = -3.5367646
+text = "deck"
+metadata/_edit_use_anchors_ = true

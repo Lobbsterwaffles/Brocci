@@ -122,7 +122,8 @@ func _ready():
 			get_tree().paused = true
 			get_node("%ui/pausemenu").show()
 	)
-
+	get_node("%ui/hud/deck_btn").pressed.connect(show_deckview)
+	get_node("%ui/deck_view/close_btn").pressed.connect(quit_deckview)
 	# begin_drafting()
 
 func player_poison():
@@ -196,5 +197,17 @@ func finish_drafting():
 	get_node("%ui/drafting").hide()
 	get_node("%ui/drafting").process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	get_tree().paused = false
+
+func show_deckview():
+	get_tree().paused = true
+	get_node("%ui/deck_view").show()
+	get_node("%ui/deck_view").process_mode = ProcessMode.PROCESS_MODE_WHEN_PAUSED
+	get_node("%ui/deck_view").populate()
+
+func quit_deckview():
+	get_node("%ui/deck_view").hide()
+	get_node("%ui/deck_view").process_mode = ProcessMode.PROCESS_MODE_DISABLED
+	get_tree().paused = false
+
 
 	
