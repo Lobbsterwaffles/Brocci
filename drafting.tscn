@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://ct1tpifvys8un"]
 
+[ext_resource type="Theme" uid="uid://smucn33shco0" path="res://UI/card_theme.tres" id="1_1s1wu"]
 [ext_resource type="Script" uid="uid://cout8x0wlmvw4" path="res://drafting.gd" id="1_12fwj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12fwj"]
-bg_color = Color(0.11, 0.11, 0.11, 1)
+bg_color = Color(0.46484375, 0.44986343, 0.4049225, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -16,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_1s1wu")
 script = ExtResource("1_12fwj")
 
 [node name="Label" type="Label" parent="." unique_id=398051894]

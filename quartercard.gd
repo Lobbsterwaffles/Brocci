@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 
 func tlabel(t):
 	var lbl = Label.new()

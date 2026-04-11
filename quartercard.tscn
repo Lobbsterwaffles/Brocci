@@ -1,23 +1,24 @@
 [gd_scene format=3 uid="uid://cbbus22u2julp"]
 
+[ext_resource type="Theme" uid="uid://smucn33shco0" path="res://UI/card_theme.tres" id="1_7brjw"]
 [ext_resource type="Script" uid="uid://o8pbwq2l85jm" path="res://quartercard.gd" id="1_mhoas"]
+[ext_resource type="PackedScene" uid="uid://dal4r3puvsnaw" path="res://cardbackground.tscn" id="2_nu006"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vebna"]
-bg_color = Color(0.21482527, 0, 0.007888107, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-
-[node name="quartercard" type="PanelContainer" unique_id=879739545]
+[node name="quartercard" type="Control" unique_id=492484101]
 custom_minimum_size = Vector2(200, 280)
-anchors_preset = -1
-offset_right = -200.0
-offset_bottom = -280.0
+layout_mode = 3
+anchor_right = 0.17281067
+anchor_bottom = 0.43209878
+offset_right = 0.9221039
+scale = Vector2(0.99538946, 1)
 size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_vebna")
+theme = ExtResource("1_7brjw")
 script = ExtResource("1_mhoas")
 metadata/_edit_use_anchors_ = true
+
+[node name="Cardbackground" parent="." unique_id=304676987 instance=ExtResource("2_nu006")]
+visibility_layer = 2
+scale = Vector2(0.70006156, 0.8602648)
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1797913439]
 position = Vector2(0, 140)
@@ -32,8 +33,11 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=988171434]
-layout_mode = 2
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 280.0
 size_flags_stretch_ratio = 0.0
+theme = ExtResource("1_7brjw")
 theme_override_constants/separation = 0
 alignment = 1
 
@@ -69,5 +73,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="btn" type="Button" parent="." unique_id=1011689615]
-layout_mode = 2
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 280.0
 flat = true

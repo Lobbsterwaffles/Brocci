@@ -1,7 +1,10 @@
 [gd_resource type="Theme" format=3 uid="uid://casqdwho1ldl8"]
 
+[ext_resource type="FontFile" uid="uid://8jfnb08dvsou" path="res://UI/KHMenu.otf" id="1_ptyj5"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bu7r"]
-bg_color = Color(0.79296875, 0.7774811, 0.69384766, 1)
+bg_color = Color(0.2265625, 0.22259766, 0.20178223, 1)
 
 [resource]
+default_font = ExtResource("1_ptyj5")
 Panel/styles/panel = SubResource("StyleBoxFlat_0bu7r")

@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://8ai8ue4oekre"]
 
 [ext_resource type="Script" uid="uid://q3bxca0qh6iw" path="res://UI/pausemenu.gd" id="1_me0t0"]
-
-[sub_resource type="Theme" id="Theme_mvae3"]
+[ext_resource type="Theme" uid="uid://casqdwho1ldl8" path="res://UI/menu_theme.tres" id="2_mvae3"]
 
 [node name="pausemenu" type="Control" unique_id=1999936203]
 layout_mode = 3
@@ -19,24 +18,25 @@ offset_left = 464.0
 offset_top = 69.0
 offset_right = 686.0
 offset_bottom = 291.0
-theme = SubResource("Theme_mvae3")
+theme = ExtResource("2_mvae3")
 
-[node name="Label" type="Label" parent="." unique_id=736317080]
+[node name="Label" type="Label" parent="Panel" unique_id=736317080]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -56.0
-offset_top = 104.0
-offset_right = 47.0
-offset_bottom = 127.0
+offset_left = -55.0
+offset_top = 35.0
+offset_right = 48.0
+offset_bottom = 58.0
 grow_horizontal = 2
 text = "PAUSE MENU"
 
-[node name="resume_btn" type="Button" parent="." unique_id=1408778258]
+[node name="resume_btn" type="Button" parent="Panel" unique_id=1408778258]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 528.0
-offset_top = 184.0
-offset_right = 613.0
-offset_bottom = 215.0
+offset_left = 64.0
+offset_top = 115.0
+offset_right = 149.0
+offset_bottom = 146.0
 text = "RESUME"
