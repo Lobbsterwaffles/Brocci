@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://eh5p4jwa3qvu" path="res://player.tscn" id="1_pnx8u"]
 [ext_resource type="Script" uid="uid://bc6wwkahjdech" path="res://rootly.gd" id="1_wpucx"]
 [ext_resource type="PackedScene" uid="uid://cbkdfu7hppgrg" path="res://hud.tscn" id="3_1lfxc"]
+[ext_resource type="PackedScene" uid="uid://8ai8ue4oekre" path="res://pausemenu.tscn" id="4_sa1sv"]
 
 [node name="Rootly" type="Node2D" unique_id=1993284389]
 script = ExtResource("1_wpucx")
@@ -15,6 +16,10 @@ unique_name_in_owner = true
 
 [node name="hud" parent="ui" unique_id=1462350320 instance=ExtResource("3_1lfxc")]
 
+[node name="pausemenu" parent="ui" unique_id=1999936203 instance=ExtResource("4_sa1sv")]
+process_mode = 2
+visible = false
+
 [node name="Label" type="Label" parent="." unique_id=1156310192]
 offset_left = -2040.0
 offset_top = -776.0
@@ -25,3 +30,5 @@ text = "BACKGROUND
 TEXTURE LMAO"
 
 [node name="poison_timer" type="Timer" parent="." unique_id=548715606]
+
+[node name="bone_timer" type="Timer" parent="." unique_id=1870035271]

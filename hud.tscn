@@ -86,3 +86,15 @@ offset_right = -0.51200867
 offset_bottom = -0.055992126
 text = "HP: XY%"
 metadata/_edit_use_anchors_ = true
+
+[node name="pause_btn" type="Button" parent="." unique_id=594217292]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_top = -512.0
+offset_right = -1.0
+offset_bottom = -481.0
+grow_horizontal = 0
+text = "pause"
