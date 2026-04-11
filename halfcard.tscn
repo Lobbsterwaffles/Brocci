@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://le5ac18jn88q"]
+
+[node name="Control" type="PanelContainer" unique_id=1431939538]
+custom_minimum_size = Vector2(200, 140)
+anchors_preset = -1
+anchor_right = 0.1736111
+anchor_bottom = 0.21604939
+size_flags_horizontal = 4
+size_flags_vertical = 8
+metadata/_edit_use_anchors_ = true

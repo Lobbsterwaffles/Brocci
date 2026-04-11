@@ -123,6 +123,8 @@ func _ready():
 			get_node("%ui/pausemenu").show()
 	)
 
+	begin_drafting()
+
 func player_poison():
 	print("Poisonge")
 	var b = scn_poison.instantiate()
@@ -182,3 +184,17 @@ func gain_max_hp(x):
 
 func gain_ms(x):
 	%Player.speed += x
+
+func begin_drafting():
+	get_tree().paused = true
+	get_node("%ui/drafting").show()
+	get_node("%ui/drafting").process_mode = ProcessMode.PROCESS_MODE_WHEN_PAUSED
+	get_node("%ui/drafting").show_cards(card_def.slice(0, 3))
+
+	
+func finish_drafting():
+	get_node("%ui/drafting").hide()
+	get_node("%ui/drafting").process_mode = ProcessMode.PROCESS_MODE_DISABLED
+	get_tree().paused = false
+
+	

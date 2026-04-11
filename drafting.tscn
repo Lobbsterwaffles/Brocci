@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://ct1tpifvys8un"]
+
+[ext_resource type="Script" uid="uid://cout8x0wlmvw4" path="res://drafting.gd" id="1_12fwj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12fwj"]
+bg_color = Color(0.11, 0.11, 0.11, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="drafting" type="Control" unique_id=1792571010]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_12fwj")
+
+[node name="Label" type="Label" parent="." unique_id=398051894]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.0
+offset_right = 31.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "drafting"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=363056552]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16666667
+anchor_top = 0.17283951
+anchor_right = 0.8680556
+anchor_bottom = 0.8765431
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_12fwj")
+metadata/_edit_use_anchors_ = true
+
+[node name="grid" type="HBoxContainer" parent="PanelContainer" unique_id=2144890694]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="shift_btn" type="Button" parent="." unique_id=1002176460]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4861111
+anchor_top = 0.2345679
+anchor_right = 0.5572917
+anchor_bottom = 0.31790122
+offset_right = -37.0
+offset_bottom = -23.0
+text = ">>>>"
+metadata/_edit_use_anchors_ = true
+
+[node name="shift_timer" type="Timer" parent="." unique_id=1477110284]
+one_shot = true

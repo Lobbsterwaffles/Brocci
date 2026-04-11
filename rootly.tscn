@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bc6wwkahjdech" path="res://rootly.gd" id="1_wpucx"]
 [ext_resource type="PackedScene" uid="uid://cbkdfu7hppgrg" path="res://hud.tscn" id="3_1lfxc"]
 [ext_resource type="PackedScene" uid="uid://8ai8ue4oekre" path="res://pausemenu.tscn" id="4_sa1sv"]
+[ext_resource type="PackedScene" uid="uid://ct1tpifvys8un" path="res://drafting.tscn" id="5_wsrun"]
 
 [node name="Rootly" type="Node2D" unique_id=1993284389]
 script = ExtResource("1_wpucx")
@@ -18,6 +19,10 @@ unique_name_in_owner = true
 
 [node name="pausemenu" parent="ui" unique_id=1999936203 instance=ExtResource("4_sa1sv")]
 process_mode = 2
+visible = false
+
+[node name="drafting" parent="ui" unique_id=1792571010 instance=ExtResource("5_wsrun")]
+process_mode = 4
 visible = false
 
 [node name="Label" type="Label" parent="." unique_id=1156310192]
