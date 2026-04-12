@@ -1,28 +1,24 @@
 [gd_scene format=3 uid="uid://cym8s6o0g2gg3"]
 
 [ext_resource type="Script" path="res://poison.gd" id="1_710si"]
-[ext_resource type="Texture2D" uid="uid://lgtjj6cjakjc" path="res://Sprites/Effects/sourpatch0.png" id="2_s7g7s"]
-[ext_resource type="Texture2D" uid="uid://binb76kwlqkrr" path="res://Sprites/Effects/sourpatch1.png" id="3_txvim"]
-[ext_resource type="Texture2D" uid="uid://qx35gfjw2ihf" path="res://Sprites/Effects/sourpatch2.png" id="4_k83p6"]
-[ext_resource type="Texture2D" uid="uid://0d2250lq5da4" path="res://Sprites/Effects/sourpatch3.png" id="5_k16lq"]
+[ext_resource type="Texture2D" uid="uid://b4buejodpdlu7" path="res://Sprites/Effects/poison0.png" id="2_pjqmx"]
+[ext_resource type="Texture2D" uid="uid://dqs4aubn60qhw" path="res://Sprites/Effects/poison1.png" id="3_s7g7s"]
+[ext_resource type="Texture2D" uid="uid://cld2gm043uqu" path="res://Sprites/Effects/poison2.png" id="4_txvim"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rtl8c"]
-radius = 208.1538
+radius = 64.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k83p6"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_s7g7s")
+"duration": 2.0,
+"texture": ExtResource("2_pjqmx")
 }, {
-"duration": 1.0,
-"texture": ExtResource("3_txvim")
+"duration": 2.0,
+"texture": ExtResource("3_s7g7s")
 }, {
-"duration": 1.0,
-"texture": ExtResource("4_k83p6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_k16lq")
+"duration": 2.0,
+"texture": ExtResource("4_txvim")
 }],
 "loop": true,
 "name": &"default",
