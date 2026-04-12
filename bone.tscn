@@ -19,3 +19,4 @@ debug_color = Color(1, 0, 0.75, 0.41960785)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1593792885]
 scale = Vector2(0.39705753, 0.39705753)
 sprite_frames = ExtResource("2_jhw1f")
+frame_progress = 0.55165845
