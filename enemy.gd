@@ -2,8 +2,10 @@ class_name Enemy
 extends CharacterBody2D
 
 @export var health_max = 100
-@export var speed = 100 # can't be called speed ???????????
+@export var speed = 100
 @export var player_dmg = 20
+
+signal die(pos)
 
 var health
 var hitting_player = false
@@ -27,7 +29,7 @@ func hurt_enter(area):
 	%healthbar.value = health as float / health_max
 	b.on_hit()
 	if health <= 0:
-		print("I die")
+		die.emit(position)
 		queue_free()
 
 func hit_enter(area):

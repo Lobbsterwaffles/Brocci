@@ -1,5 +1,9 @@
 [gd_scene format=3 uid="uid://cbkdfu7hppgrg"]
 
+[ext_resource type="Texture2D" uid="uid://becmadsvynef3" path="res://Sprites/heart.png" id="1_8sq4i"]
+[ext_resource type="Texture2D" uid="uid://crj4enkfd0l57" path="res://Sprites/cabbage.png" id="2_640wx"]
+[ext_resource type="Texture2D" uid="uid://brqiw81igk8ig" path="res://Sprites/lihgtning.png" id="3_a2258"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2snw"]
 bg_color = Color(1, 0, 0, 1)
 
@@ -16,9 +20,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.7847222
-anchor_top = -0.29411766
+anchor_top = -1.0
 anchor_right = 0.9930556
-anchor_bottom = -0.09558824
+anchor_bottom = -0.8014706
 grow_horizontal = 2
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
@@ -64,9 +68,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.7847222
-anchor_top = -0.059294194
+anchor_top = -0.706353
 anchor_right = 0.99288887
-anchor_bottom = 0.13970588
+anchor_bottom = -0.50735295
 offset_top = 0.06401062
 offset_right = 0.19198608
 theme_override_styles/fill = SubResource("StyleBoxFlat_n2snw")
@@ -78,9 +82,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.8612778
-anchor_top = -0.05882353
+anchor_top = -0.7058824
 anchor_right = 0.9171111
-anchor_bottom = 0.11070588
+anchor_bottom = -0.53635293
 offset_left = -0.1920166
 offset_right = -0.51200867
 offset_bottom = -0.055992126
@@ -143,19 +147,68 @@ text = "XYZ"
 
 [node name="Label5" type="Label" parent="PanelContainer/GridContainer" unique_id=581750039]
 layout_mode = 2
-text = "Crit chance"
+text = "Damage"
 
-[node name="lbl_crit" type="Label" parent="PanelContainer/GridContainer" unique_id=1454173259]
+[node name="lbl_dmg" type="Label" parent="PanelContainer/GridContainer" unique_id=1454173259]
 unique_name_in_owner = true
 layout_mode = 2
 text = "XYZ"
+
+[node name="player_resources" type="GridContainer" parent="." unique_id=290481965]
+layout_mode = 0
+offset_top = -512.0
+offset_right = 96.0
+offset_bottom = -312.0
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="player_resources" unique_id=1480120768]
+layout_mode = 2
+texture = ExtResource("1_8sq4i")
+stretch_mode = 4
+
+[node name="lbl_player_heart" type="Label" parent="player_resources" unique_id=1452812109]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "H"
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="player_resources" unique_id=117488525]
+layout_mode = 2
+texture = ExtResource("2_640wx")
+stretch_mode = 4
+
+[node name="lbl_player_cabbage" type="Label" parent="player_resources" unique_id=1329512987]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "C"
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="player_resources" unique_id=410168762]
+layout_mode = 2
+texture = ExtResource("3_a2258")
+stretch_mode = 4
+
+[node name="lbl_player_lightning" type="Label" parent="player_resources" unique_id=487777784]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "L"
+vertical_alignment = 1
 
 [node name="drafting_btn" type="Button" parent="." unique_id=808254303]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.7847222
-anchor_top = -0.5661765
+anchor_top = -1.2941177
 anchor_right = 0.9930556
-anchor_bottom = -0.3382353
+anchor_bottom = -1.0661764
 text = "drafting"
 metadata/_edit_use_anchors_ = true

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dke8ug1s33so6"]
+
+[ext_resource type="Script" uid="uid://djulnun0ludvx" path="res://lemon_enemy.gd" id="1_wr3ld"]
+[ext_resource type="Texture2D" uid="uid://cajmh4ayvk1tu" path="res://Sprites/Characters/lemonfly.png" id="2_x6b13"]
+[ext_resource type="Script" uid="uid://c1i2st1535st0" path="res://enemy_hurt.gd" id="3_p8naj"]
+[ext_resource type="StyleBox" uid="uid://3wb0m01bgxrn" path="res://new_style_box_flat.tres" id="4_sjk5t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0q8qo"]
+radius = 33.0
+height = 134.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mfbi1"]
+radius = 8.010006
+height = 35.87168
+
+[node name="LemonEnemy" type="CharacterBody2D" unique_id=1938725651]
+script = ExtResource("1_wr3ld")
+health_max = 200
+speed = 120
+player_dmg = 50
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1409978779]
+position = Vector2(3.999999, -12)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0q8qo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=728790027]
+position = Vector2(-6, 30.999996)
+rotation = 0.23826736
+shape = SubResource("CapsuleShape2D_mfbi1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=258321713]
+position = Vector2(-10, 21)
+texture = ExtResource("2_x6b13")
+
+[node name="Hurt" type="Area2D" parent="." unique_id=852631434]
+unique_name_in_owner = true
+position = Vector2(4, -12)
+script = ExtResource("3_p8naj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurt" unique_id=766863504]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0q8qo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt" unique_id=1018953591]
+position = Vector2(-9.999999, 42.999996)
+rotation = 0.23826735
+shape = SubResource("CapsuleShape2D_mfbi1")
+
+[node name="healthbar" type="ProgressBar" parent="." unique_id=630710407]
+unique_name_in_owner = true
+offset_left = -54.0
+offset_top = 54.0
+offset_right = 64.0
+offset_bottom = 58.0
+theme_override_styles/fill = ExtResource("4_sjk5t")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="Hit" type="Area2D" parent="." unique_id=29544183]
+position = Vector2(4, -12)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hit" unique_id=81535020]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0q8qo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit" unique_id=1105056413]
+position = Vector2(-9.999999, 42.999996)
+rotation = 0.23826735
+shape = SubResource("CapsuleShape2D_mfbi1")
+
+[node name="player_hit_timer" type="Timer" parent="." unique_id=566893843]
+wait_time = 0.35

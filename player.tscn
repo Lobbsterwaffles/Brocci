@@ -2,17 +2,53 @@
 
 [ext_resource type="Script" uid="uid://dwqlew8glx36v" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://qqia08q6862j" path="res://player_hurt.gd" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://3ki1cst3luyj" path="res://Sprites/Characters/jump1.png" id="3_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bup52tgrdhi4b" path="res://Sprites/Characters/jump2.png" id="4_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://cgea4qoke3dfm" path="res://Sprites/Characters/jump3.png" id="5_1jxqw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2hs0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1jxqw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
-size = Vector2(18, 42)
+size = Vector2(23, 123)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
-radius = 58.034473
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]
+height = 106.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+radius = 58.00862
 
 [node name="Player" type="CharacterBody2D" unique_id=1877699559]
 script = ExtResource("1_4flbx")
 
+[node name="flipper" type="Node2D" parent="." unique_id=1474506123]
+unique_name_in_owner = true
+scale = Vector2(-1, 1)
+
+[node name="sprite" type="AnimatedSprite2D" parent="flipper" unique_id=1334722762]
+unique_name_in_owner = true
+position = Vector2(4, -1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dw050")
+frame = 2
+frame_progress = 0.16108285
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=213662297]
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_sh265")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1144933044]
@@ -22,4 +58,15 @@ monitoring = false
 script = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt" unique_id=124356878]
-shape = SubResource("CircleShape2D_4flbx")
+position = Vector2(1, 10)
+shape = SubResource("CapsuleShape2D_sweqy")
+
+[node name="pickup" type="Area2D" parent="." unique_id=1642402542]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickup" unique_id=1878386408]
+shape = SubResource("CircleShape2D_onrkg")
+debug_color = Color(0, 0.62200165, 0.5523798, 0.41960785)

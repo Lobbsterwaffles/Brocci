@@ -2,37 +2,27 @@ extends Node2D
 
 var scn_enemy = preload("res://enemy.tscn")
 var scn_other_enemy = preload("res://other_enemy.tscn")
+var scn_lemon_enemy = preload("res://lemon_enemy.tscn")
 var scn_bullet = preload("res://bullet.tscn")
 var scn_poison = preload("res://poison.tscn")
 var scn_card = preload("res://card.tscn")
 var scn_buff = preload("res://buff_progress.tscn") 
 var scn_bone = preload("res://bone.tscn")
+var scn_xporb = preload("res://xporb.tscn")
 
 var ref_progress
 var ref_cc
 var ref_lbl_deck
 var ref_lbl_ms
-var ref_lbl_crit
+var ref_lbl_dmg
 var HAND_CARDS = 4
 
-var effect_good = [
-	["deal 2x damage", func (): buff_player_dmg(2, 10)],
-	["go real fast", func (): buff_player_ms(1.5, 10)],
-	["gain 10 max hp", func (): gain_max_hp(10)],
-	["gain 10 speed", func (): gain_ms(10)],
-]
 
-var effect_bad = [
-	["spawn one enemy", func (): spawn_enemy1(1)],
-	# ["spawn two enemies", func (): spawn_enemy1(2)],
-	# ["spawn eight enemies", func (): spawn_enemy1(8)],
-	["spawn five enemies", func (): spawn_enemy1(5)],
-	["spawn other enemies", func (): spawn_enemy2(2)],
-
-]
-
-func spawn_enemy1(n): spawn_enemy_ring(n, scn_enemy)
-func spawn_enemy2(n): spawn_enemy_ring(n, scn_other_enemy)
+func spawn_xporb(pos, scn, on_pickup):
+	var xporb = scn_xporb.instantiate()
+	xporb.position = pos
+	xporb.pickup.connect(on_pickup)
+	call_deferred("add_child", xporb)
 
 func spawn_enemy_ring(n, scn):
 	for i in range(n):
@@ -40,6 +30,9 @@ func spawn_enemy_ring(n, scn):
 		var angle = 2 * PI * randf()
 		var radius = 200 + 20 * randf()
 		e.position = %Player.position + radius * Vector2(cos(angle), sin(angle))
+		var pf = func():
+			%Player.gain_hearts(1)
+		e.die.connect(func(pos): spawn_xporb(pos, scn, pf))
 		add_child(e)
 
 class PoisonTrail:
@@ -79,11 +72,17 @@ func draw1():
 func _ready():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	%Player.shoot.connect(_on_player_shoot)
+	%Player.get_node("pickup").area_entered.connect(
+		func(oa):
+			print("Emit pickup of ", oa, oa.pickup)
+			oa.pickup.emit()
+			oa.queue_free()
+	)
 	ref_progress = get_node("%ui/hud/ProgressBar")
 	ref_cc = get_node("%ui/hud/card_container")
 	ref_lbl_deck = get_node("ui/hud/%lbl_deck")
 	ref_lbl_ms = get_node("ui/hud/%lbl_ms")
-	ref_lbl_crit = get_node("ui/hud/%lbl_crit")
+	ref_lbl_dmg = get_node("ui/hud/%lbl_dmg")
 
 	process_mode = ProcessMode.PROCESS_MODE_INHERIT
 
@@ -156,7 +155,7 @@ func _on_hero_timeout():
 func _process(delta):
 	ref_lbl_deck.text = "%d / %d" % [my_deck.size(), my_discard.size()]
 	ref_lbl_ms.text = "%d" % [%Player.speed]
-	ref_lbl_crit.text = "%d%%" % [(100 * %Player.crit) as int]
+	ref_lbl_dmg.text = "%d%%" % [(100 * %Player.dmg_mult) as int]
 
 	ref_progress.value += 50*delta
 	if ref_progress.value >= 100:
@@ -193,7 +192,6 @@ func begin_drafting():
 	get_node("%ui/drafting").show()
 	get_node("%ui/drafting").process_mode = ProcessMode.PROCESS_MODE_WHEN_PAUSED
 	
-	
 func finish_drafting():
 	get_node("%ui/drafting").hide()
 	get_node("%ui/drafting").process_mode = ProcessMode.PROCESS_MODE_DISABLED
@@ -217,7 +215,6 @@ func do_card_effects(card):
 	do_effect_row(card.bot_cat, card.bot_color)
 
 func do_effect_row(cat, color):
-	print("Eff row ", cat, " ", color)
 	match [cat, color]:
 		[Library.CardCategory.GAIN, Library.CardColor.RED]: gain_max_hp(10)
 		[Library.CardCategory.GAIN, Library.CardColor.GREEN]: gain_max_hp(10)
@@ -227,9 +224,9 @@ func do_effect_row(cat, color):
 		[Library.CardCategory.BUFF, Library.CardColor.GREEN]: buff_player_dmg(1.05, 5)
 		[Library.CardCategory.BUFF, Library.CardColor.YELLOW]: buff_player_ms(1.15, 5)
 
-		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy1(2)
-		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy2(2)
-		[Library.CardCategory.SPAWN, Library.CardColor.YELLOW]: spawn_enemy2(2)
+		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_enemy)
+		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_other_enemy)
+		[Library.CardCategory.SPAWN, Library.CardColor.YELLOW]: spawn_enemy_ring(2, scn_lemon_enemy)
 
 		_:
 			print("?? CARD")

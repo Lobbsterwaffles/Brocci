@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://1ybv2a43e0i3"]
+
+[ext_resource type="Texture2D" uid="uid://crj4enkfd0l57" path="res://Sprites/cabbage.png" id="1_g77o2"]
+[ext_resource type="Script" uid="uid://crbborb2ugr6j" path="res://xporb.gd" id="1_o8daq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3omm3"]
+
+[node name="xporb" type="Area2D" unique_id=1419613467]
+scale = Vector2(0.6, 0.6)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_o8daq")
+
+[node name="green" type="Sprite2D" parent="." unique_id=1355271718]
+scale = Vector2(0.5, 0.504)
+texture = ExtResource("1_g77o2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1368090625]
+scale = Vector2(1.799999, 1.799999)
+shape = SubResource("CircleShape2D_3omm3")

@@ -53,9 +53,9 @@ class Card:
 	func as_node():
 		return mkcard(
 			mscc(tlabel(category_label[top_cat])),
-			mscc(mksprite(color_image[top_color])),
+			(mksprite(color_image[top_color])),
 			mscc(tlabel(category_label[bot_cat])),
-			mscc(mksprite(color_image[bot_color])),
+			(mksprite(color_image[bot_color])),
 		)
 
 	func swap_top(other):
