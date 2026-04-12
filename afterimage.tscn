@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://y7qxv6aekimd"]
+
+[ext_resource type="Script" uid="uid://ciao8pwwqpjqy" path="res://afterimage.gd" id="1_534w3"]
+[ext_resource type="Shader" uid="uid://cddfcq5hgaurj" path="res://afterimage.gdshader" id="1_r70vb"]
+[ext_resource type="Texture2D" uid="uid://3ki1cst3luyj" path="res://Sprites/Characters/jump1.png" id="2_534w3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oy21j"]
+radius = 6.0
+height = 110.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g008h"]
+shader = ExtResource("1_r70vb")
+shader_parameter/blue = 1.0
+
+[node name="Afterimage" type="Area2D" unique_id=1091132869]
+script = ExtResource("1_534w3")
+metadata/_custom_type_script = "uid://bxxnf2oioinf0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1785404224]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_oy21j")
+debug_color = Color(1, 0, 0.75, 0.41960785)
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="." unique_id=2094150529]
+modulate = Color(1.3908411, 3.7351766, 4.4486694, 0.7254902)
+self_modulate = Color(4.3302517, 4.3302517, 4.3302517, 0.31764707)
+material = SubResource("ShaderMaterial_g008h")
+position = Vector2(4.9999995, 0)
+scale = Vector2(0.39705753, 0.39705753)
+texture = ExtResource("2_534w3")
