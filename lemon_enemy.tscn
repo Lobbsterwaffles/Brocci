@@ -6,14 +6,15 @@
 [ext_resource type="StyleBox" uid="uid://3wb0m01bgxrn" path="res://new_style_box_flat.tres" id="4_sjk5t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0q8qo"]
-radius = 33.0
-height = 134.0
+radius = 28.0
+height = 120.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mfbi1"]
-radius = 8.010006
-height = 35.87168
+radius = 6.06651
+height = 18.435555
 
 [node name="LemonEnemy" type="CharacterBody2D" unique_id=1938725651]
+collision_layer = 16
 script = ExtResource("1_wr3ld")
 health_max = 200
 speed = 200
@@ -25,7 +26,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_0q8qo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=728790027]
-position = Vector2(-6, 30.999996)
+position = Vector2(-2, 22.999998)
 rotation = 0.23826736
 shape = SubResource("CapsuleShape2D_mfbi1")
 

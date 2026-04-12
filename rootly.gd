@@ -72,7 +72,6 @@ func _ready():
 	%Player.shoot.connect(_on_player_shoot)
 	%Player.get_node("pickup").area_entered.connect(
 		func(oa):
-			print("Emit pickup of ", oa, oa.pickup)
 			oa.pickup.emit()
 			oa.queue_free()
 	)
@@ -222,8 +221,8 @@ func do_effect_row(cat, color):
 		[Library.CardCategory.BUFF, Library.CardColor.GREEN]: buff_player_dmg(1.05, 5)
 		[Library.CardCategory.BUFF, Library.CardColor.YELLOW]: buff_player_ms(1.15, 5)
 
-		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_hearts(1))
-		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_cabbage(1))
+		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_hearts(1))
+		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_cabbage(1))
 		[Library.CardCategory.SPAWN, Library.CardColor.YELLOW]: spawn_enemy_ring(2, scn_lemon_enemy, func(): %Player.gain_lightning(1))
 
 		_:

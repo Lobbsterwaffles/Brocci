@@ -76,16 +76,14 @@ class Card:
 		other.top_color = color
 
 var STARTING_DECK = [
+	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
+	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
+
 	Card.new(CardCategory.BUFF, CardColor.YELLOW, CardCategory.SPAWN, CardColor.YELLOW),
 	Card.new(CardCategory.BUFF, CardColor.YELLOW, CardCategory.SPAWN, CardColor.YELLOW),
 
 	Card.new(CardCategory.BUFF, CardColor.GREEN, CardCategory.SPAWN, CardColor.GREEN),
 	Card.new(CardCategory.BUFF, CardColor.GREEN, CardCategory.SPAWN, CardColor.GREEN),
-
-	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
-	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
-
-
 ]
 
 func random_card():
