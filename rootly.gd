@@ -37,11 +37,16 @@ class PoisonTrail:
 	var i = 0
 	var n = 10
 	var pts = []
+	var last = null
 	var scnp = preload("res://poison.tscn")
 
 	func emit(pos):
 		var b = scnp.instantiate()
 		b.position = pos
+
+		if last != null  and last.distance_to(pos) < 30:
+			return null
+
 		var r
 		if i < n:
 			r = b
@@ -49,6 +54,8 @@ class PoisonTrail:
 		else:
 			r = null
 			pts[i % n].position = pos
+
+		last = pos
 		i += 1
 		return r
 
@@ -95,7 +102,7 @@ func _ready():
 			if pel:
 				add_child(pel)
 	)
-	# $poison_timer.start(0.25)
+	$poison_timer.start(0.56)
 
 	get_node("%ui/hud/pause_btn").pressed.connect(
 		func():
