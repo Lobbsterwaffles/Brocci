@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cj2iky2ydox8t"]
 
-[ext_resource type="Script" uid="uid://m46mf47tssh4" path="res://enemy.gd" id="1_qqpvt"]
+[ext_resource type="Script" uid="uid://db6ttg15hww84" path="res://other_enemy.gd" id="1_6hd3o"]
 [ext_resource type="Script" uid="uid://c1i2st1535st0" path="res://enemy_hurt.gd" id="2_6hd3o"]
 [ext_resource type="StyleBox" uid="uid://3wb0m01bgxrn" path="res://new_style_box_flat.tres" id="3_2lb5w"]
 [ext_resource type="Texture2D" uid="uid://dbjtr45eyfjf8" path="res://Sprites/Characters/chocci.png" id="4_6hd3o"]
@@ -8,8 +8,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hd3o"]
 size = Vector2(53, 75)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6hd3o"]
+radius = 347.036
+
 [node name="OtherEnemy" type="CharacterBody2D" unique_id=1938725651]
-script = ExtResource("1_qqpvt")
+collision_layer = 16
+script = ExtResource("1_6hd3o")
 health_max = 150
 speed = 80
 player_dmg = 40
@@ -48,3 +52,22 @@ wait_time = 0.35
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=258321713]
 texture = ExtResource("4_6hd3o")
+
+[node name="notice" type="Area2D" parent="." unique_id=1174699545]
+unique_name_in_owner = true
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="notice" unique_id=461452061]
+shape = SubResource("CircleShape2D_6hd3o")
+debug_color = Color(0, 0.6, 0.69803923, 0.105882354)
+
+[node name="notice_timer" type="Timer" parent="." unique_id=966984380]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="marker" type="Line2D" parent="." unique_id=10612590]
+unique_name_in_owner = true
+points = PackedVector2Array(5, -8, 21, -24, 37, -8, 21, 8, 5, -8)
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+end_cap_mode = 1

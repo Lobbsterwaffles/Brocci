@@ -27,7 +27,8 @@ animations = [{
 size = Vector2(23, 123)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]
-height = 106.0
+radius = 16.0
+height = 138.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 58.00862
@@ -58,8 +59,9 @@ monitoring = false
 script = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt" unique_id=124356878]
-position = Vector2(1, 10)
+position = Vector2(1, -1)
 shape = SubResource("CapsuleShape2D_sweqy")
+debug_color = Color(0.93121403, 0.17613643, 0.49433208, 0.41960785)
 
 [node name="pickup" type="Area2D" parent="." unique_id=1642402542]
 unique_name_in_owner = true

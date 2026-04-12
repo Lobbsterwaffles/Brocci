@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://eh5p4jwa3qvu" path="res://player.tscn" id="1_pnx8u"]
 [ext_resource type="Script" uid="uid://bc6wwkahjdech" path="res://rootly.gd" id="1_wpucx"]
-[ext_resource type="PackedScene" uid="uid://cn0pvh02gxwdo" path="res://background.tscn" id="2_oc1rp"]
+[ext_resource type="PackedScene" path="res://background.tscn" id="2_oc1rp"]
 [ext_resource type="PackedScene" uid="uid://cbkdfu7hppgrg" path="res://hud.tscn" id="3_1lfxc"]
 [ext_resource type="Texture2D" uid="uid://bny52pxof07aw" path="res://Sprites/setting/spritesheettest.png" id="3_7sol3"]
 [ext_resource type="PackedScene" uid="uid://8ai8ue4oekre" path="res://UI/pausemenu.tscn" id="4_sa1sv"]
@@ -86,5 +86,7 @@ visible = false
 [node name="poison_timer" type="Timer" parent="." unique_id=548715606]
 
 [node name="bone_timer" type="Timer" parent="." unique_id=1870035271]
+unique_name_in_owner = true
+autostart = true
 
 [node name="hero_timer" type="Timer" parent="." unique_id=669095560]

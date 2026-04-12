@@ -37,11 +37,16 @@ class PoisonTrail:
 	var i = 0
 	var n = 10
 	var pts = []
+	var last = null
 	var scnp = preload("res://poison.tscn")
 
 	func emit(pos):
 		var b = scnp.instantiate()
 		b.position = pos
+
+		if last != null  and last.distance_to(pos) < 30:
+			return null
+
 		var r
 		if i < n:
 			r = b
@@ -49,6 +54,8 @@ class PoisonTrail:
 		else:
 			r = null
 			pts[i % n].position = pos
+
+		last = pos
 		i += 1
 		return r
 
@@ -69,10 +76,11 @@ func draw1():
 
 func _ready():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
-	%Player.shoot.connect(_on_player_shoot)
+	# %Player.shoot.connect(_on_player_shoot)
+	%bone_timer.timeout.connect(shoot_bone)
+
 	%Player.get_node("pickup").area_entered.connect(
 		func(oa):
-			print("Emit pickup of ", oa, oa.pickup)
 			oa.pickup.emit()
 			oa.queue_free()
 	)
@@ -94,7 +102,7 @@ func _ready():
 			if pel:
 				add_child(pel)
 	)
-	# $poison_timer.start(0.25)
+	$poison_timer.start(0.56)
 
 	get_node("%ui/hud/pause_btn").pressed.connect(
 		func():
@@ -123,12 +131,14 @@ func player_poison():
 	b.velocity = Vector2.ZERO
 	add_child(b)
 	
-func _on_player_shoot():
+func shoot_bone():
 	var b = scn_bone.instantiate()
 	b.position = %Player.position
-	var pa = %Player.rotation
+	# var pa = %Player.rotation
+	var pa = TAU * randf()
 	var prv = 200 * Vector2(cos(pa), sin(pa))
-	b.velocity = %Player.velocity + prv
+	# b.velocity = %Player.velocity + prv
+	b.velocity = prv
 	add_child(b)
 
 func play_cards():
@@ -222,8 +232,8 @@ func do_effect_row(cat, color):
 		[Library.CardCategory.BUFF, Library.CardColor.GREEN]: buff_player_dmg(1.05, 5)
 		[Library.CardCategory.BUFF, Library.CardColor.YELLOW]: buff_player_ms(1.15, 5)
 
-		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_hearts(1))
-		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_cabbage(1))
+		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_hearts(1))
+		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_cabbage(1))
 		[Library.CardCategory.SPAWN, Library.CardColor.YELLOW]: spawn_enemy_ring(2, scn_lemon_enemy, func(): %Player.gain_lightning(1))
 
 		_:

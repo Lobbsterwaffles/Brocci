@@ -46,7 +46,7 @@ func hit_exit(area):
 	ref_timer.stop()
 	
 func _physics_process(delta):
-	velocity = speed * position.direction_to(ref_player.position)
+	velocity = speed * 60 * delta * position.direction_to(ref_player.position)
 	move_and_slide()
 
 func damage_player():

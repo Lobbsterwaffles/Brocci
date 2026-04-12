@@ -89,7 +89,7 @@ func check_resource(amt, needed, img):
 		%resource_warning.hide()
 	$resource_warning_timer.timeout.connect(f, CONNECT_ONE_SHOT)
 	$resource_warning_timer.start(1)
-	var tw = create_tween()
+	# var tw = create_tween()
 	%resource_warning.show()
 
 	return false
@@ -156,7 +156,7 @@ func do_shift():
 		return
 
 	var cost = 1
-	if not check_resource(ref_player.lightning, cost, preload("res://Sprites/cabbage.png")):
+	if not check_resource(ref_player.cabbage, cost, preload("res://Sprites/cabbage.png")):
 		return
 	ref_player.gain_cabbage(-cost)
 
