@@ -69,7 +69,9 @@ func draw1():
 
 func _ready():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
-	%Player.shoot.connect(_on_player_shoot)
+	# %Player.shoot.connect(_on_player_shoot)
+	%bone_timer.timeout.connect(shoot_bone)
+
 	%Player.get_node("pickup").area_entered.connect(
 		func(oa):
 			oa.pickup.emit()
@@ -122,12 +124,14 @@ func player_poison():
 	b.velocity = Vector2.ZERO
 	add_child(b)
 	
-func _on_player_shoot():
+func shoot_bone():
 	var b = scn_bone.instantiate()
 	b.position = %Player.position
-	var pa = %Player.rotation
+	# var pa = %Player.rotation
+	var pa = TAU * randf()
 	var prv = 200 * Vector2(cos(pa), sin(pa))
-	b.velocity = %Player.velocity + prv
+	# b.velocity = %Player.velocity + prv
+	b.velocity = prv
 	add_child(b)
 
 func play_cards():

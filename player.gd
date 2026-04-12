@@ -22,6 +22,7 @@ var health = health_max
 
 
 
+
 func _ready():
 	motion_mode = MotionMode.MOTION_MODE_FLOATING
 
