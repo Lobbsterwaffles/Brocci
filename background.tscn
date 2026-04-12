@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cn0pvh02gxwdo"]
+
+[ext_resource type="Texture2D" uid="uid://10whsrh6hlrv" path="res://Sprites/setting/tile.png" id="1_oabld"]
+
+[node name="Background" type="TextureRect" unique_id=1803866724]
+offset_right = 2695.0
+offset_bottom = 1666.0
+texture = ExtResource("1_oabld")
+stretch_mode = 1

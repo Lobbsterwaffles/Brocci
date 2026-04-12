@@ -1,14 +1,68 @@
-[gd_scene format=3 uid="uid://p3i87ub5mbpk"]
+[gd_scene format=4 uid="uid://p3i87ub5mbpk"]
 
 [ext_resource type="PackedScene" uid="uid://eh5p4jwa3qvu" path="res://player.tscn" id="1_pnx8u"]
 [ext_resource type="Script" uid="uid://bc6wwkahjdech" path="res://rootly.gd" id="1_wpucx"]
+[ext_resource type="PackedScene" uid="uid://cn0pvh02gxwdo" path="res://background.tscn" id="2_oc1rp"]
 [ext_resource type="PackedScene" uid="uid://cbkdfu7hppgrg" path="res://hud.tscn" id="3_1lfxc"]
-[ext_resource type="PackedScene" uid="uid://8ai8ue4oekre" path="res://pausemenu.tscn" id="4_sa1sv"]
+[ext_resource type="Texture2D" uid="uid://bny52pxof07aw" path="res://Sprites/setting/spritesheettest.png" id="3_7sol3"]
+[ext_resource type="PackedScene" uid="uid://8ai8ue4oekre" path="res://UI/pausemenu.tscn" id="4_sa1sv"]
 [ext_resource type="PackedScene" uid="uid://ct1tpifvys8un" path="res://drafting.tscn" id="5_wsrun"]
 [ext_resource type="PackedScene" uid="uid://brddvwt0d7e5d" path="res://deck_view.tscn" id="6_0vs6s"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oc1rp"]
+texture = ExtResource("3_7sol3")
+texture_region_size = Vector2i(128, 128)
+1:4/size_in_atlas = Vector2i(1, 10)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-58.060913, -633.9627, 51.784058, -630.8243, 51.784058, 633.96265, -58.060913, 633.96265)
+11:3/size_in_atlas = Vector2i(2, 5)
+11:3/0 = 0
+11:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-59.34729, -288.76447, -91.23541, -200.18642, -100.0932, 127.5524, -84.14917, 244.47543, -61.118896, 294.07913, -39.860107, 255.10483, -20.372986, 139.95334, -13.286743, 56.68994, 8, 8, 123.123535, 191.32858, 8, 3.5431213, 128.43823, -191.32861, 8, -8, -13.286743, -62.00464, -20.372986, -147.03958, -25.687622, -210.81578, -39.860107, -262.19104)
+8:2/size_in_atlas = Vector2i(1, 2)
+8:2/0 = 0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-51.08487, -113.45925, 49.955933, -114.02373, 49.39148, -10.16053, 49.955933, 114.58819, 27.941467, 103.86318, -11.571716, 105.5566, -42.053284, 118.53951, -44.311188, 10.724998, -56.729614, 10.16053, -56.16513, -6.7736893, -49.39145, -8.46711)
+8:0/size_in_atlas = Vector2i(2, 2)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-115.5, -114, 117.5, -115, 118.5, 116, -112.5, 114)
+10:0/size_in_atlas = Vector2i(4, 2)
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-191.5, 29, -186.5, -6, -137.5, -42, -73.5, -61, 8.5, -69, 91.5, -65, 157.5, -45, 211.5, -13, 226.5, 24, 206.5, 61, 165.5, 83, 95.5, 107, 7.5, 115, -79.5, 105, -151.5, 79, -169.5, 62)
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(23.100739, 47.15735, -17.365372, 48.113243, -46.360764, 14.657013, -40.306778, -24.215939, -3.3456116, -46.520096, 36.801865, -30.588554, 50.184357, 16.887428)
+4:0/size_in_atlas = Vector2i(1, 2)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(51.5, 104, 3.5, 120, -49.5, 103, -26.5, -29, -54.5, -80, 56.5, -79, 34.5, -31)
+6:4/size_in_atlas = Vector2i(4, 4)
+6:4/0 = 0
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-251.07434, -251.07434, 247.93588, -257.3512, 263.62802, 122.39874, -251.07434, 128.6756)
+6:4/0/physics_layer_0/polygon_1/points = PackedVector2Array(-51.784058, 247.93591, -127.106445, 6.2768555, 120.82947, 12.553711, 42.368774, 251.07434)
+5:9/size_in_atlas = Vector2i(1, 5)
+5:9/0 = 0
+5:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-61.118896, -313.56635, 54.032593, -311.79477, 55.8042, 311.79477, -59.34729, 313.5663)
+6:13/size_in_atlas = Vector2i(4, 1)
+6:13/0 = 0
+6:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-255.5, -58, 251.5, -58, 248.5, 59, -255.5, 59)
+3:9/size_in_atlas = Vector2i(1, 5)
+3:9/0 = 0
+3:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-61.118896, -313.56635, 55.8042, -313.56635, 55.8042, 311.79477, -61.118896, 311.79477)
+
+[sub_resource type="TileSet" id="TileSet_ik70f"]
+physics_layer_0/collision_layer = 1
+sources/4 = SubResource("TileSetAtlasSource_oc1rp")
+
 [node name="Rootly" type="Node2D" unique_id=1993284389]
 script = ExtResource("1_wpucx")
+
+[node name="Background" parent="." unique_id=1803866724 instance=ExtResource("2_oc1rp")]
+modulate = Color(0.84, 0.84, 0.84, 1)
+offset_left = -1969.0
+offset_top = -961.0
+offset_right = 3189.0
+offset_bottom = 1555.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=595943955]
+tile_map_data = PackedByteArray("AACI/00ABAAFAAkAAACI/yYABAAFAAkAAACI////BAAFAAkAAACI/9j/BAAFAAkAAACg/10ABAAFAAkAAFDH/10ABAAFAAkAAFDu/10ABAAFAAkAAFAVAF0ABAAFAAkAAFA8AF0ABAAFAAkAAFBjAF0ABAAFAAkAAFCKAF0ABAAFAAkAAFCxAF0ABAAFAAkAAFDIAE0ABAAFAAkAADDIACYABAAFAAkAADDIAP//BAAFAAkAADDIANj/BAAFAAkAADC4AMD/BAAFAAkAAGCRAMD/BAAFAAkAAGBqAMD/BAAFAAkAAGBDAMD/BAAFAAkAAGAcAMD/BAAFAAkAAGD1/8D/BAAFAAkAAGDO/8D/BAAFAAkAAGCn/8D/BAAFAAkAAGCA/8D/BAAFAAkAAGBYAPH/BAAGAAQAAACZAOP/BAAIAAIAAFCmAD0ABAAFAAEAAACUAC8ABAAEAAAAAAA+ACYABAADAAkAAADi/w0ABAAGAA0AAACeAAMABAADAAkAAGCyAB4ABAALAAMAAABeAD0ABAAGAA0AAFCqAPP/BAAIAAIAADAfAEkABAAGAA0AADAgAN7/BAADAAkAAAA=")
+tile_set = SubResource("TileSet_ik70f")
 
 [node name="Player" parent="." unique_id=1877699559 instance=ExtResource("1_pnx8u")]
 unique_name_in_owner = true
@@ -28,15 +82,6 @@ visible = false
 
 [node name="deck_view" parent="ui" unique_id=1345969838 instance=ExtResource("6_0vs6s")]
 visible = false
-
-[node name="Label" type="Label" parent="." unique_id=1156310192]
-offset_left = -2040.0
-offset_top = -776.0
-offset_right = 2208.0
-offset_bottom = 863.0
-theme_override_font_sizes/font_size = 600
-text = "BACKGROUND
-TEXTURE LMAO"
 
 [node name="poison_timer" type="Timer" parent="." unique_id=548715606]
 
