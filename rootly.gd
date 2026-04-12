@@ -24,15 +24,13 @@ func spawn_xporb(pos, scn, on_pickup):
 	xporb.pickup.connect(on_pickup)
 	call_deferred("add_child", xporb)
 
-func spawn_enemy_ring(n, scn):
+func spawn_enemy_ring(n, scn, xporb_effect):
 	for i in range(n):
 		var e = scn.instantiate()
 		var angle = 2 * PI * randf()
 		var radius = 200 + 20 * randf()
 		e.position = %Player.position + radius * Vector2(cos(angle), sin(angle))
-		var pf = func():
-			%Player.gain_hearts(1)
-		e.die.connect(func(pos): spawn_xporb(pos, scn, pf))
+		e.die.connect(func(pos): spawn_xporb(pos, scn, xporb_effect))
 		add_child(e)
 
 class PoisonTrail:
@@ -224,9 +222,9 @@ func do_effect_row(cat, color):
 		[Library.CardCategory.BUFF, Library.CardColor.GREEN]: buff_player_dmg(1.05, 5)
 		[Library.CardCategory.BUFF, Library.CardColor.YELLOW]: buff_player_ms(1.15, 5)
 
-		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_enemy)
-		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_other_enemy)
-		[Library.CardCategory.SPAWN, Library.CardColor.YELLOW]: spawn_enemy_ring(2, scn_lemon_enemy)
+		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_hearts(1))
+		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_cabbage(1))
+		[Library.CardCategory.SPAWN, Library.CardColor.YELLOW]: spawn_enemy_ring(2, scn_lemon_enemy, func(): %Player.gain_lightning(1))
 
 		_:
 			print("?? CARD")

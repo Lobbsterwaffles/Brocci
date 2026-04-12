@@ -16,7 +16,7 @@ height = 35.87168
 [node name="LemonEnemy" type="CharacterBody2D" unique_id=1938725651]
 script = ExtResource("1_wr3ld")
 health_max = 200
-speed = 120
+speed = 200
 player_dmg = 50
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1409978779]
@@ -72,3 +72,11 @@ shape = SubResource("CapsuleShape2D_mfbi1")
 
 [node name="player_hit_timer" type="Timer" parent="." unique_id=566893843]
 wait_time = 0.35
+
+[node name="marker" type="Line2D" parent="." unique_id=1302225764]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-176, -136)
+points = PackedVector2Array(5, -8, 21, -24, 37, -8, 21, 8, 5, -8)
+width = 2.0
+end_cap_mode = 1

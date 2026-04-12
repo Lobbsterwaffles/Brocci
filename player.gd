@@ -27,8 +27,13 @@ func _ready():
 
 func get_input():
 	velocity = speed * Input.get_vector("a", "d", "w", "s")
-	if not velocity.is_zero_approx():
-		%flipper.scale.x = sign(velocity.x)
+	# if not velocity.is_zero_approx():
+	# 	%flipper.scale.x = sign(velocity.x)
+	if velocity.x < 0:
+		%flipper.scale.x = -1
+	elif velocity.x > 0:
+		%flipper.scale.x = 1
+		
 	if Input.is_action_just_pressed("e"):
 		shoot.emit()
 

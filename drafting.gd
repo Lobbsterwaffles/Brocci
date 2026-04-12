@@ -1,11 +1,12 @@
 extends Control
 
+signal card_chosen(card)
 
 var cards = []
 var card_nodes = [] 
 var selected_card_index = null
 
-signal card_chosen(card)
+@onready var ref_player = get_node("/root/Rootly/Player")
 
 func incc(e):
 	var cc = CenterContainer.new()
@@ -75,13 +76,41 @@ func tween_cubic(n, start, end, defl):
 	return func(t):
 		n.global_position = start.cubic_interpolate(end, pre, post, t)
 
+func check_resource(amt, needed, img):
+	if amt >= needed:
+		return true
+	
+	if not %resource_warning_timer.is_stopped():
+		%resource_warning_timer.stop()
+		
+	%warning_icon.texture = img
+	var f = func():
+		print("Timer end")
+		%resource_warning.hide()
+	$resource_warning_timer.timeout.connect(f, CONNECT_ONE_SHOT)
+	$resource_warning_timer.start(1)
+	var tw = create_tween()
+	%resource_warning.show()
+
+	return false
+
 func do_vswap_cat(i):
+	var cost = 1
+	if not check_resource(ref_player.hearts, cost, preload("res://Sprites/heart.png")):
+		return
+	ref_player.gain_hearts(-cost)
+
 	var temp = cards[i].top_cat
 	cards[i].top_cat = cards[i].bot_cat
 	cards[i].bot_cat = temp
 	do_vswap_anim(card_nodes[i], "%topleft", "%botleft", "%topright", "%botright")
 
 func do_vswap_color(i):
+	var cost = 1
+	if not check_resource(ref_player.lightning, cost, preload("res://Sprites/lihgtning.png")):
+		return
+	ref_player.gain_lightning(-cost)
+
 	var temp = cards[i].top_color
 	cards[i].top_color = cards[i].bot_color
 	cards[i].bot_color = temp
@@ -125,6 +154,11 @@ func do_vswap_anim(card, top, bot, o1, o2):
 func do_shift():
 	if not $shift_timer.is_stopped():
 		return
+
+	var cost = 1
+	if not check_resource(ref_player.lightning, cost, preload("res://Sprites/cabbage.png")):
+		return
+	ref_player.gain_cabbage(-cost)
 
 	var cid = [0, 1, 2]
 	var sq = ["%topleft", "%topright"]

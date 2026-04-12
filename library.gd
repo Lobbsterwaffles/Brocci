@@ -5,12 +5,21 @@ enum CardColor { RED, GREEN, YELLOW }
 
 enum CardCategory { GAIN, BUFF, SPAWN, LONG, SHORT }
 
+var color_image = [
+	preload("res://Sprites/heart.png"),
+	preload("res://Sprites/cabbage.png"),
+	preload("res://Sprites/lihgtning.png"),
+]
+
+
 class Card:
+	# hack idk how to share from outer scope 
 	var color_image = [
-		load("res://Sprites/heart.png"),
-		load("res://Sprites/cabbage.png"),
-		load("res://Sprites/lihgtning.png"),
+		preload("res://Sprites/heart.png"),
+		preload("res://Sprites/cabbage.png"),
+		preload("res://Sprites/lihgtning.png"),
 	]
+
 	var category_label = ["gain","buff","spawn","long","short"]
 	var scn_qc = preload("res://quartercard.tscn")
 
@@ -67,14 +76,16 @@ class Card:
 		other.top_color = color
 
 var STARTING_DECK = [
-	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
-	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
-
 	Card.new(CardCategory.BUFF, CardColor.YELLOW, CardCategory.SPAWN, CardColor.YELLOW),
 	Card.new(CardCategory.BUFF, CardColor.YELLOW, CardCategory.SPAWN, CardColor.YELLOW),
 
 	Card.new(CardCategory.BUFF, CardColor.GREEN, CardCategory.SPAWN, CardColor.GREEN),
-	Card.new(CardCategory.BUFF, CardColor.GREEN, CardCategory.SPAWN, CardColor.GREEN)
+	Card.new(CardCategory.BUFF, CardColor.GREEN, CardCategory.SPAWN, CardColor.GREEN),
+
+	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
+	Card.new(CardCategory.BUFF, CardColor.RED, CardCategory.SPAWN, CardColor.RED),
+
+
 ]
 
 func random_card():
