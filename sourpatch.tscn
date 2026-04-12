@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://q8vjh33es2eh"]
+
+[ext_resource type="Script" path="res://poison.gd" id="1_f4xpw"]
+[ext_resource type="Texture2D" uid="uid://lgtjj6cjakjc" path="res://Sprites/Effects/sourpatch0.png" id="2_bi51w"]
+[ext_resource type="Texture2D" uid="uid://binb76kwlqkrr" path="res://Sprites/Effects/sourpatch1.png" id="3_05woq"]
+[ext_resource type="Texture2D" uid="uid://qx35gfjw2ihf" path="res://Sprites/Effects/sourpatch2.png" id="4_mcuix"]
+[ext_resource type="Texture2D" uid="uid://0d2250lq5da4" path="res://Sprites/Effects/sourpatch3.png" id="5_t7yoy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bi51w"]
+radius = 16.263458
+height = 104.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k83p6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bi51w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_05woq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mcuix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t7yoy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Sourpatch" type="Area2D" unique_id=357693241]
+script = ExtResource("1_f4xpw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=397003253]
+position = Vector2(-81, -72)
+rotation = 0.7853982
+shape = SubResource("CapsuleShape2D_bi51w")
+debug_color = Color(1, 0, 0.75, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1489798993]
+position = Vector2(75, 95)
+rotation = 0.7853982
+shape = SubResource("CapsuleShape2D_bi51w")
+debug_color = Color(1, 0, 0.75, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=83202810]
+position = Vector2(-7, -112)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_bi51w")
+debug_color = Color(1, 0, 0.75, 0.41960785)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=31182651]
+position = Vector2(78, -73.00001)
+rotation = 2.6179938
+shape = SubResource("CapsuleShape2D_bi51w")
+debug_color = Color(1, 0, 0.75, 0.41960785)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="." unique_id=460051913]
+position = Vector2(109, 11)
+shape = SubResource("CapsuleShape2D_bi51w")
+debug_color = Color(1, 0, 0.75, 0.41960785)
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="." unique_id=477199521]
+position = Vector2(0, 131)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_bi51w")
+debug_color = Color(1, 0, 0.75, 0.41960785)
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=27979320]
+position = Vector2(-80, 100.99999)
+rotation = 2.3561945
+shape = SubResource("CapsuleShape2D_bi51w")
+debug_color = Color(1, 0, 0.75, 0.41960785)
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="." unique_id=282033048]
+position = Vector2(-118.00001, 10.999992)
+shape = SubResource("CapsuleShape2D_bi51w")
+debug_color = Color(1, 0, 0.75, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=992339409]
+position = Vector2(-5.421011e-20, -9.536743e-07)
+scale = Vector2(0.3125, 0.3125)
+sprite_frames = SubResource("SpriteFrames_k83p6")
+frame = 3
+frame_progress = 0.0972526
