@@ -15,10 +15,10 @@ func incc(e):
 
 func testrow(i):
 	var h = HBoxContainer.new()
-	var lbtn = Button.new()
-	lbtn.text = "L"
-	var rbtn = Button.new()
-	rbtn.text = "R"
+	var lbtn = %Heartswap.duplicate()
+	lbtn.position = Vector2 (0,0)
+	var rbtn = %Boltswap.duplicate()
+	rbtn.position = Vector2 (0,0)
 	h.add_child(incc(lbtn))
 	h.add_child(incc(card_nodes[i]))
 	h.add_child(incc(rbtn))

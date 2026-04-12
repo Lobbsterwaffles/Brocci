@@ -2,6 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://smucn33shco0" path="res://UI/card_theme.tres" id="1_1s1wu"]
 [ext_resource type="Script" uid="uid://cout8x0wlmvw4" path="res://drafting.gd" id="1_12fwj"]
+[ext_resource type="Texture2D" uid="uid://cpk4jphhiel7l" path="res://UI/heartswap.png" id="3_k7cmv"]
+[ext_resource type="Texture2D" uid="uid://cwyf4jyaavodj" path="res://UI/boltswap.png" id="4_yj1r6"]
+[ext_resource type="Texture2D" uid="uid://b4gxtl6etb4b6" path="res://UI/cabswap.png" id="5_t40k3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12fwj"]
 bg_color = Color(0.46484375, 0.44986343, 0.4049225, 1)
@@ -49,16 +52,17 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="shift_btn" type="Button" parent="." unique_id=1002176460]
+[node name="shift_btn" type="TextureButton" parent="." unique_id=1010306076]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.48517263
-anchor_top = 0.25925925
-anchor_right = 0.5563532
-anchor_bottom = 0.3425926
-offset_right = -37.0
-offset_bottom = -23.0
-text = ">>>>"
+anchor_left = 0.4721769
+anchor_top = 0.20679012
+anchor_right = 0.5466856
+anchor_bottom = 0.33924997
+texture_normal = ExtResource("5_t40k3")
+ignore_texture_size = true
+stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="shift_timer" type="Timer" parent="." unique_id=1477110284]
@@ -102,3 +106,27 @@ metadata/_edit_use_anchors_ = true
 [node name="resource_warning_timer" type="Timer" parent="." unique_id=843254006]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="Heartswap" type="TextureButton" parent="." unique_id=2020245990]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_left = -275.46716
+offset_top = 262.0
+offset_right = -147.46716
+offset_bottom = 390.0
+texture_normal = ExtResource("3_k7cmv")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Boltswap" type="TextureButton" parent="." unique_id=607846978]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_left = -275.46716
+offset_top = 134.0
+offset_right = -147.46716
+offset_bottom = 262.0
+texture_normal = ExtResource("4_yj1r6")
+ignore_texture_size = true
+stretch_mode = 0
