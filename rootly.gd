@@ -20,12 +20,12 @@ var HAND_CARDS = 4
 var xp_total = 0
 var player_level = 0
 var xp_req = [
-	5
-	10
-	20
-	30
-	40
-	50
+	5,
+	10,
+	20,
+	30,
+	40,
+	50,
 ]
 
 
@@ -54,6 +54,29 @@ var my_deck = []
 var my_hand = []
 var my_discard = []
 
+class Loadout extends RefCounted:
+	var timer = []
+	var level = []
+	func _init():
+		for i in Library.Weapon.MAX_WEAPON:
+			timer.append(Timer.new())
+			level.append(0)
+
+	func levelup_weapon(w):
+		if level[w] > 0:
+			level[w] += 1
+		else:
+			level[w] = 1
+			timer[w].start(1)
+
+var the_loadout = Loadout.new()
+
+
+func shoot_poison():
+	var pel = ptrail.emit(%Player.position)
+	if pel:
+		add_child(pel)
+
 func draw1():
 	if my_deck.is_empty():
 		my_deck = my_discard
@@ -65,9 +88,6 @@ func draw1():
 
 func _ready():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
-	# %Player.shoot.connect(_on_player_shoot)
-	%bone_timer.timeout.connect(shoot_bone)
-
 	%Player.get_node("pickup").area_entered.connect(
 		func(oa):
 			xp_total += 1 
@@ -82,17 +102,15 @@ func _ready():
 
 	process_mode = ProcessMode.PROCESS_MODE_INHERIT
 
-	$hero_timer.timeout.connect(_on_hero_timeout) 
-
 	ptrail = PoisonTrail.new()
-	
-	$poison_timer.timeout.connect(
-		func():
-			var pel = ptrail.emit(%Player.position)
-			if pel:
-				add_child(pel)
-	)
-	$poison_timer.start(0.56)
+	the_loadout.timer[Library.Weapon.BONE].timeout.connect(shoot_bone)
+	the_loadout.timer[Library.Weapon.POISON].timeout.connect(shoot_poison)
+	for t in the_loadout.timer:
+		add_child(t)
+
+	the_loadout.levelup_weapon(Library.Weapon.BONE)
+
+	$hero_timer.timeout.connect(_on_hero_timeout) 
 
 	get_node("%ui/hud/pause_btn").pressed.connect(
 		func():
@@ -114,14 +132,8 @@ func on_card_chosen(c):
 	finish_drafting()
 	my_deck.append(c)
 
-func player_poison():
-	print("Poisonge")
-	var b = scn_poison.instantiate()
-	b.position = %Player.position
-	b.velocity = Vector2.ZERO
-	add_child(b)
-	
 func shoot_bone():
+	print( "Shb one")
 	var b = scn_bone.instantiate()
 	b.position = %Player.position
 	# var pa = %Player.rotation

@@ -20,16 +20,11 @@ var health = health_max
 @onready var ref_cabbage_lbl = get_node("/root/Rootly/ui/hud/%lbl_player_cabbage")
 @onready var ref_lightning_lbl = get_node("/root/Rootly/ui/hud/%lbl_player_lightning")
 
-
-
-
 func _ready():
 	motion_mode = MotionMode.MOTION_MODE_FLOATING
 
 func get_input():
 	velocity = speed * Input.get_vector("a", "d", "w", "s")
-	# if not velocity.is_zero_approx():
-	# 	%flipper.scale.x = sign(velocity.x)
 	if velocity.x < 0:
 		%flipper.scale.x = -1
 	elif velocity.x > 0:
