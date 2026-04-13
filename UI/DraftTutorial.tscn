@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://gxbekl0imsmv"]
+
+[ext_resource type="Theme" uid="uid://smucn33shco0" path="res://UI/card_theme.tres" id="1_0x7jw"]
+
+[node name="DraftTutorial" type="Control" unique_id=943305502]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=179396042]
+layout_mode = 0
+anchor_left = 0.1345486
+anchor_top = 0.106481485
+anchor_right = 0.875
+anchor_bottom = 0.89660496
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1711241667]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer" unique_id=1840689917]
+layout_mode = 2
+theme = ExtResource("1_0x7jw")
+text = "When you LEVEL UP, you DRAFT one card for the RAT
+When DRAFTING, you may spend MOTES to customize the card
+You may spend  HEARTS to INVERT the card's EFFECT
+You may spend BOLTS to INVERT the card's COLOR
+And you may spend CABBAGES to shuffle the TOP HALVES of the cards once to the RIGHT
+
+Have fun, be creative!
+
+8)"
+tab_size = 5
+horizontal_alignment = 1
+vertical_alignment = 1

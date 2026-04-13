@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://16q1uxh52maa"]
+
+[ext_resource type="Theme" uid="uid://smucn33shco0" path="res://UI/card_theme.tres" id="1_jl26d"]
+
+[node name="Tutorial" type="Control" unique_id=808530074]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="PanelContainer" parent="." unique_id=1666966735]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 149.0
+offset_right = 633.5841
+offset_bottom = 516.7743
+scale = Vector2(1.6350859, 0.9217609)
+theme = ExtResource("1_jl26d")
+
+[node name="MarginContainer" type="MarginContainer" parent="Container" unique_id=143497040]
+custom_minimum_size = Vector2(2.09, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Container/MarginContainer" unique_id=1463141773]
+clip_contents = false
+layout_mode = 2
+text = "The RAT is out to get you!
+The RAT plays CARDS
+The card's TOP affects YOU
+Its BOTTOM affects the RAT
+
+ENEMIES drop MOTES
+MOTES give you STAT BONUSES
+Collect enough, and you will LEVEL UP!"
+autowrap_mode = 2
+tab_size = 6
+horizontal_alignment = 1
+vertical_alignment = 1

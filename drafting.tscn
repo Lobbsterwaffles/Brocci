@@ -26,15 +26,16 @@ script = ExtResource("1_12fwj")
 
 [node name="Label" type="Label" parent="." unique_id=398051894]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -25.065674
-offset_top = 64.0
-offset_right = 36.934326
-offset_bottom = 87.0
+anchors_preset = -1
+anchor_left = 0.41747773
+anchor_top = 0.10493827
+anchor_right = 0.59282494
+anchor_bottom = 0.1404321
+offset_left = 1.0
+offset_right = -1.0
 grow_horizontal = 2
-text = "drafting"
+text = "Add a card to RAT's Deck!"
+metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=363056552]
 layout_mode = 1
@@ -82,10 +83,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="resource_warning" type="HBoxContainer" parent="." unique_id=22268858]
 unique_name_in_owner = true
-layout_mode = 0
-anchor_left = 0.4461856
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4600476
 anchor_top = 0.7160494
-anchor_right = 0.5778754
+anchor_right = 0.5917374
 anchor_bottom = 0.7777778
 metadata/_edit_use_anchors_ = true
 
