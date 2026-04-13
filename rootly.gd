@@ -154,6 +154,10 @@ func shoot_afterimage():
 		i.dir = 1	
 	print(i.dir)
 	add_child(i)
+	
+func shoot_sourpatch():
+	var sou = scn_sourpatch.instantiate()
+	add_child(sou)
 
 func play_cards():
 	ref_progress.value = 0
