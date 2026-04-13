@@ -83,6 +83,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="resource_warning" type="HBoxContainer" parent="." unique_id=22268858]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4600476
