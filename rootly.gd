@@ -90,6 +90,7 @@ func _ready():
 			xp_total += 1
 			if xp_total >= xp_for_level(1 + player_level):
 				player_level += 1
+			call_deferred("begin_drafting")
 			oa.pickup.emit()
 			oa.queue_free()
 	)
@@ -183,7 +184,8 @@ func _on_hero_timeout():
 		hero.get_child(0).queue_free()
 	
 func _process(delta):
-	ref_lbl_deck.text = "%d / %d" % [my_deck.size(), my_discard.size()]
+	var total_cards = my_deck.size() + my_hand.size() + my_discard.size()
+	ref_lbl_deck.text = "%d / %d" % [my_deck.size(), total_cards]
 	ref_lbl_ms.text = "%d" % [%Player.speed]
 	ref_lbl_dmg.text = "%d%%" % [(100 * %Player.dmg_mult) as int]
 	
