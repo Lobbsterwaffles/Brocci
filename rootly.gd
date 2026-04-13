@@ -303,6 +303,7 @@ func rat_gain_lightning(x):
 
 func begin_drafting():
 	get_tree().paused = true
+	get_node("%ui/drafting").new_cards()
 	get_node("%ui/drafting").show()
 	get_node("%ui/drafting").process_mode = ProcessMode.PROCESS_MODE_WHEN_PAUSED
 	

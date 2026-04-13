@@ -252,7 +252,6 @@ text = "L"
 vertical_alignment = 1
 
 [node name="drafting_btn" type="Button" parent="." unique_id=808254303]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.7847222
