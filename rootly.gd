@@ -19,6 +19,21 @@ var ref_lbl_ms
 var ref_lbl_dmg
 var HAND_CARDS = 4
 
+var xp_total = 0
+var player_level = 0
+var xp_req = [
+	5,
+	10,
+	20,
+	30,
+	40,
+	50,
+]
+
+
+var enemy_hp_bonus = 0
+var enemy_dmg_mult = 1
+var enemy_ms_mult = 1
 
 func spawn_xporb(pos, scn, on_pickup):
 	var xporb = scn_xporb.instantiate()
@@ -35,37 +50,34 @@ func spawn_enemy_ring(n, scn, xporb_effect):
 		e.die.connect(func(pos): spawn_xporb(pos, scn, xporb_effect))
 		add_child(e)
 
-class PoisonTrail:
-	var i = 0
-	var n = 10
-	var pts = []
-	var last = null
-	var scnp = preload("res://poison.tscn")
-
-	func emit(pos):
-		var b = scnp.instantiate()
-		b.position = pos
-
-		if last != null  and last.distance_to(pos) < 30:
-			return null
-
-		var r
-		if i < n:
-			r = b
-			pts.append(b)
-		else:
-			r = null
-			pts[i % n].position = pos
-
-		last = pos
-		i += 1
-		return r
-
 var ptrail  
 		
 var my_deck = []
 var my_hand = []
 var my_discard = []
+
+class Loadout extends RefCounted:
+	var timer = []
+	var level = []
+	func _init():
+		for i in Library.Weapon.MAX_WEAPON:
+			timer.append(Timer.new())
+			level.append(0)
+
+	func levelup_weapon(w):
+		if level[w] > 0:
+			level[w] += 1
+		else:
+			level[w] = 1
+			timer[w].start(1)
+
+var the_loadout = Loadout.new()
+
+
+func shoot_poison():
+	var pel = ptrail.emit(%Player.position)
+	if pel:
+		add_child(pel)
 
 func draw1():
 	if my_deck.is_empty():
@@ -78,11 +90,9 @@ func draw1():
 
 func _ready():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
-	# %Player.shoot.connect(_on_player_shoot)
-	%bone_timer.timeout.connect(shoot_afterimage)
-
 	%Player.get_node("pickup").area_entered.connect(
 		func(oa):
+			xp_total += 1 
 			oa.pickup.emit()
 			oa.queue_free()
 	)
@@ -94,17 +104,15 @@ func _ready():
 
 	process_mode = ProcessMode.PROCESS_MODE_INHERIT
 
-	$hero_timer.timeout.connect(_on_hero_timeout) 
-
 	ptrail = PoisonTrail.new()
-	
-	$poison_timer.timeout.connect(
-		func():
-			var pel = ptrail.emit(%Player.position)
-			if pel:
-				add_child(pel)
-	)
-	$poison_timer.start(0.56)
+	the_loadout.timer[Library.Weapon.BONE].timeout.connect(shoot_bone)
+	the_loadout.timer[Library.Weapon.POISON].timeout.connect(shoot_poison)
+	for t in the_loadout.timer:
+		add_child(t)
+
+	the_loadout.levelup_weapon(Library.Weapon.BONE)
+
+	$hero_timer.timeout.connect(_on_hero_timeout) 
 
 	get_node("%ui/hud/pause_btn").pressed.connect(
 		func():
@@ -126,14 +134,8 @@ func on_card_chosen(c):
 	finish_drafting()
 	my_deck.append(c)
 
-func player_poison():
-	print("Poisonge")
-	var b = scn_poison.instantiate()
-	b.position = %Player.position
-	b.velocity = Vector2.ZERO
-	add_child(b)
-	
 func shoot_bone():
+	print( "Shb one")
 	var b = scn_bone.instantiate()
 	b.position = %Player.position
 	# var pa = %Player.rotation
@@ -235,10 +237,10 @@ func quit_deckview():
 	get_tree().paused = false
 	
 func do_card_effects(card):
-	do_effect_row(card.top_cat, card.top_color)
-	do_effect_row(card.bot_cat, card.bot_color)
+	player_effect_row(card.top_cat, card.top_color)
+	enemy_effect_row(card.bot_cat, card.bot_color)
 
-func do_effect_row(cat, color):
+func player_effect_row(cat, color):
 	match [cat, color]:
 		[Library.CardCategory.GAIN, Library.CardColor.RED]: gain_max_hp(10)
 		[Library.CardCategory.GAIN, Library.CardColor.GREEN]: gain_max_hp(10)
@@ -247,6 +249,15 @@ func do_effect_row(cat, color):
 		[Library.CardCategory.BUFF, Library.CardColor.RED]: heal(10)
 		[Library.CardCategory.BUFF, Library.CardColor.GREEN]: buff_player_dmg(1.05, 5)
 		[Library.CardCategory.BUFF, Library.CardColor.YELLOW]: buff_player_ms(1.15, 5)
+
+		_:
+			print("?? CARD")
+
+func enemy_effect_row(cat, color):
+	match [cat, color]:
+		[Library.CardCategory.GAIN, Library.CardColor.RED]: enemy_hp_bonus += 10
+		[Library.CardCategory.GAIN, Library.CardColor.GREEN]: enemy_dmg_mult += 1.05
+		[Library.CardCategory.GAIN, Library.CardColor.YELLOW]: enemy_ms_mult += 1.05
 
 		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_hearts(1))
 		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_cabbage(1))

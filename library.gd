@@ -11,6 +11,13 @@ var color_image = [
 	preload("res://Sprites/lihgtning.png"),
 ]
 
+enum Weapon { BONE, POISON, AFTERIMAGE, HEARTSLASH, ZAP, MAX_WEAPON }
+
+
+var weapon_sprite = [
+	# ...
+]
+
 
 class Card:
 	# hack idk how to share from outer scope 
