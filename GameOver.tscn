@@ -9,7 +9,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=2014313379]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.037326388
 anchor_top = 0.072530866
 anchor_right = 0.9696181
@@ -33,28 +34,21 @@ The RAT wins again..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer" unique_id=475919858]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Button" unique_id=1614159206]
+[node name="Button" type="Button" parent="." unique_id=1075748380]
 layout_mode = 0
-offset_left = 445.0
-offset_top = 430.0
-offset_right = 530.0
-offset_bottom = 453.0
+anchor_left = 0.4626736
+anchor_top = 0.65123457
+anchor_right = 0.54445356
+anchor_bottom = 0.72839504
+text = "Try Again!"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="." unique_id=475919858]
+layout_mode = 0
+anchor_left = 0.4626736
+anchor_top = 0.7592593
+anchor_right = 0.5454233
+anchor_bottom = 0.8302469
+offset_top = -3.0517578e-05
 text = "Quit!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="PanelContainer" unique_id=1075748380]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/Button" unique_id=2010851484]
-layout_mode = 0
-offset_left = 495.0
-offset_top = 439.0
-offset_right = 580.0
-offset_bottom = 462.0
-text = "Play Again!"
-horizontal_alignment = 1
-vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

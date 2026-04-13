@@ -11,10 +11,17 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_o8daq")
 
+[node name="green2" type="Sprite2D" parent="." unique_id=1232590059]
+modulate = Color(0.27, 0.27, 0.27, 0.74509805)
+position = Vector2(2.9802322e-08, 0)
+scale = Vector2(0.6145834, 0.61950004)
+texture = ExtResource("1_g77o2")
+
 [node name="green" type="Sprite2D" parent="." unique_id=1355271718]
 scale = Vector2(0.5, 0.504)
 texture = ExtResource("1_g77o2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1368090625]
+visible = false
 scale = Vector2(1.799999, 1.799999)
 shape = SubResource("CircleShape2D_3omm3")

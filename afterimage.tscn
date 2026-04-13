@@ -17,13 +17,14 @@ script = ExtResource("1_534w3")
 metadata/_custom_type_script = "uid://bxxnf2oioinf0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1785404224]
+visible = false
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_oy21j")
 debug_color = Color(1, 0, 0.75, 0.41960785)
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="." unique_id=2094150529]
-modulate = Color(1.3908411, 3.7351766, 4.4486694, 0.7254902)
-self_modulate = Color(4.3302517, 4.3302517, 4.3302517, 0.31764707)
+modulate = Color(1.3749679, 3.731215, 4.448333, 0.9372549)
+self_modulate = Color(0.9219859, 0.9219859, 0.9219859, 0.7294118)
 material = SubResource("ShaderMaterial_g008h")
 position = Vector2(4.9999995, 0)
 scale = Vector2(0.39705753, 0.39705753)
