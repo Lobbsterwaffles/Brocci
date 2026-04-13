@@ -11,7 +11,7 @@ var color_image = [
 	preload("res://Sprites/lihgtning.png"),
 ]
 
-enum Weapon { BONE, POISON, AFTERIMAGE, HEARTSLASH, SOURPATCH, MAX_WEAPON }
+enum Weapon { BONE, POISON, AFTERIMAGE, HEARTSLASH, SOURPATCH, CUKE, MAX_WEAPON }
 
 
 var weapon_sprite = [

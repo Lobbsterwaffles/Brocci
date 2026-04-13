@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bddcmgghip6wm"]
+
+[node name="GameOver" type="Control" unique_id=1557015174]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2014313379]
+layout_mode = 0
+anchor_left = 0.037326388
+anchor_top = 0.072530866
+anchor_right = 0.9696181
+anchor_bottom = 0.9521605
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2029304039]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer" unique_id=1305418544]
+layout_mode = 2
+text = "Oh no!
+
+Game Over!
+
+The RAT wins again..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer" unique_id=475919858]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Button" unique_id=1614159206]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 430.0
+offset_right = 530.0
+offset_bottom = 453.0
+text = "Quit!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer" unique_id=1075748380]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Button" unique_id=2010851484]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 439.0
+offset_right = 580.0
+offset_bottom = 462.0
+text = "Play Again!"
+horizontal_alignment = 1
+vertical_alignment = 1
