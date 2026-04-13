@@ -107,6 +107,10 @@ func _ready():
 	ptrail = PoisonTrail.new()
 	the_loadout.timer[Library.Weapon.BONE].timeout.connect(shoot_bone)
 	the_loadout.timer[Library.Weapon.POISON].timeout.connect(shoot_poison)
+	the_loadout.timer[Library.Weapon.AFTERIMAGE].timeout.connect(shoot_afterimage)
+	the_loadout.timer[Library.Weapon.SOURPATCH].timeout.connect(shoot_sourpatch)
+	#the_loadout.timer[Library.Weapon.HEARTSLASH].timeout.connect(shoot_heartslash)
+
 	for t in the_loadout.timer:
 		add_child(t)
 
@@ -249,6 +253,14 @@ func player_effect_row(cat, color):
 		[Library.CardCategory.BUFF, Library.CardColor.RED]: heal(10)
 		[Library.CardCategory.BUFF, Library.CardColor.GREEN]: buff_player_dmg(1.05, 5)
 		[Library.CardCategory.BUFF, Library.CardColor.YELLOW]: buff_player_ms(1.15, 5)
+		
+		#[Library.CardCategory.SHORT, Library.CardColor.RED]: the_loadout.levelup_weapon(Library.Weapon.HEARTSLASH)
+		[Library.CardCategory.SHORT, Library.CardColor.GREEN]: the_loadout.levelup_weapon(Library.Weapon.POISON)
+		[Library.CardCategory.SHORT, Library.CardColor.YELLOW]: the_loadout.levelup_weapon(Library.Weapon.SOURPATCH)
+
+		[Library.CardCategory.LONG, Library.CardColor.RED]: the_loadout.levelup_weapon(Library.Weapon.AFTERIMAGE)
+		#[Library.CardCategory.LONG, Library.CardColor.GREEN]: the_loadout.levelup_weapon(Library.Weapon.CUKE)
+		[Library.CardCategory.LONG, Library.CardColor.YELLOW]: the_loadout.levelup_weapon(Library.Weapon.BONE)
 
 		_:
 			print("?? CARD")

@@ -82,12 +82,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="resource_warning" type="HBoxContainer" parent="." unique_id=22268858]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
-offset_left = 503.02698
-offset_top = 456.0
-offset_right = 654.7336
-offset_bottom = 496.0
+anchor_left = 0.4461856
+anchor_top = 0.7160494
+anchor_right = 0.5778754
+anchor_bottom = 0.7777778
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="resource_warning" unique_id=1426268966]
 layout_mode = 2
