@@ -64,7 +64,6 @@ func new_cards():
 	%grid.add_child(testrow(2))
 	%grid.add_child(mkspacer(1))
 
-	
 
 func on_click_card(i):
 	for e in card_nodes:
@@ -75,9 +74,9 @@ func on_click_card(i):
 	selected_card_index = i
 
 func on_confirm():
-	if selected_card_index:
+	if selected_card_index != null:
 		card_chosen.emit(cards[selected_card_index])
-
+		
 func tween_cubic(n, start, end, defl):
 	var v = end - start
 	var pre = start - 0.25 * v + defl
