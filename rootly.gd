@@ -9,6 +9,8 @@ var scn_card = preload("res://card.tscn")
 var scn_buff = preload("res://buff_progress.tscn") 
 var scn_bone = preload("res://bone.tscn")
 var scn_xporb = preload("res://xporb.tscn")
+var scn_sourpatch = preload("res://sourpatch.tscn")
+var scn_afterimage = preload("res://afterimage.tscn")
 
 var ref_progress
 var ref_cc
@@ -142,6 +144,16 @@ func shoot_bone():
 	# b.velocity = %Player.velocity + prv
 	b.velocity = prv
 	add_child(b)
+
+func shoot_afterimage():
+	var i = scn_afterimage.instantiate()
+	i.position = %Player.position
+	if %Player.velocity.x < 0:
+		i.dir = -1
+	else:
+		i.dir = 1	
+	print(i.dir)
+	add_child(i)
 
 func play_cards():
 	ref_progress.value = 0
