@@ -25,6 +25,8 @@ func hurt_enter(area):
 	var b = area as Bullet
 	if not b:
 		return
+	if b.shot_by_enemy:
+		return
 	health -= b.damage * ref_player.dmg_mult
 	%healthbar.value = health as float / health_max
 	b.on_hit()

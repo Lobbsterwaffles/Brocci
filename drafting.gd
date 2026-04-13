@@ -34,6 +34,16 @@ func mkspacer(ratio):
 	return s
 
 func _ready():
+	new_cards()
+
+	$shift_btn.pressed.connect(do_shift)
+	$confirm_btn.pressed.connect(on_confirm)
+
+
+func new_cards():
+	while %grid.get_child_count() > 0:
+		%grid.get_child(0).free()
+	selected_card_index = null
 	cards = [
 		Library.random_card(),
 		Library.random_card(),
@@ -43,6 +53,9 @@ func _ready():
 	for c in cards:
 		card_nodes.append(c.as_node())
 
+	for i in card_nodes.size():
+		card_nodes[i].get_node("btn").pressed.connect(on_click_card.bind(i))
+
 	%grid.add_child(mkspacer(1))
 	%grid.add_child(testrow(0))
 	%grid.add_child(mkspacer(2))
@@ -51,11 +64,7 @@ func _ready():
 	%grid.add_child(testrow(2))
 	%grid.add_child(mkspacer(1))
 
-	$shift_btn.pressed.connect(do_shift)
-	$confirm_btn.pressed.connect(on_confirm)
-
-	for i in card_nodes.size():
-		card_nodes[i].get_node("btn").pressed.connect(on_click_card.bind(i))
+	
 
 func on_click_card(i):
 	for e in card_nodes:

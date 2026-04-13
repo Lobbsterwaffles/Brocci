@@ -39,20 +39,101 @@ func spawn_xporb(pos, scn, on_pickup):
 	xporb.pickup.connect(on_pickup)
 	call_deferred("add_child", xporb)
 
-func spawn_enemy_ring(n, scn, xporb_effect):
+var enemy_bullet_tint = Color(1, 0.6, 0.6, 1)
+
+func spawn_enemy_ring(n, scn, xporb_effect, weapon = null):
 	for i in range(n):
 		var e = scn.instantiate()
 		var angle = 2 * PI * randf()
 		var radius = 400 + 20 * randf()
 		e.position = %Player.position + radius * Vector2(cos(angle), sin(angle))
 		e.die.connect(func(pos): spawn_xporb(pos, scn, xporb_effect))
+
+		if weapon == null:
+			add_child(e)
+			return
+
+		var eloadout = Loadout.new()
+		var etrail = PoisonTrail.new()
+		for t in eloadout.timer:
+			e.add_child(t)
+		eloadout.timer[Library.Weapon.POISON].timeout.connect(
+			func():
+				enemy_shoot_poison(e, etrail)
+		)
+		eloadout.timer[Library.Weapon.BONE].timeout.connect(enemy_shoot_bone.bind(e))
+		eloadout.timer[Library.Weapon.AFTERIMAGE].timeout.connect(enemy_shoot_afterimage.bind(e))
+
+
 		add_child(e)
+
+		eloadout.levelup_weapon(weapon)
+		
+func enemy_shoot_poison(e, etrail):
+	var pel = etrail.emit(e.global_position)
+	if pel:
+		pel.shot_by_enemy = true
+		pel.modulate = enemy_bullet_tint
+		add_child(pel)
+		pel.area_entered.connect(
+			func(oa):
+				if oa is not PlayerHurtbox:
+					return
+				%Player.take_damage(pel.damage)
+				pel.on_hit()
+		)
+		e.tree_exiting.connect(pel.queue_free)
+
+func enemy_shoot_bone(e):
+	var b = scn_bone.instantiate()
+	b.shot_by_enemy = true
+	b.position = e.global_position
+	b.modulate = enemy_bullet_tint
+	var pa = TAU * randf()
+	var prv = 200 * Vector2(cos(pa), sin(pa))
+	b.velocity = prv
+	b.area_entered.connect(
+		func(oa):
+			if oa is not PlayerHurtbox:
+				return
+			%Player.take_damage(b.damage)
+			b.on_hit()
+	)
+	e.tree_exiting.connect(b.queue_free)
+	add_child(b)
+
+func enemy_shoot_afterimage(e):
+	var i = scn_afterimage.instantiate()
+	i.position = e.global_position
+	i.shot_by_enemy = true
+	i.modulate = enemy_bullet_tint
+	if %Player.velocity.x < 0:
+		i.dir = -1
+	else:
+		i.dir = 1	
+	i.area_entered.connect(
+		func(oa):
+			if oa is not PlayerHurtbox:
+				return
+			%Player.take_damage(i.damage)
+			i.on_hit()
+	)
+	add_child(i)
+
 
 var ptrail  
 		
 var my_deck = []
 var my_hand = []
 var my_discard = []
+
+var rat_hearts = 0
+var rat_cabbage = 0
+var rat_lightning = 0
+
+@onready var ref_rat_heart = get_node("/root/Rootly/ui/hud/%lbl_rat_heart")
+@onready var ref_rat_cabbage = get_node("/root/Rootly/ui/hud/%lbl_rat_cabbage")
+@onready var ref_rat_lightning = get_node("/root/Rootly/ui/hud/%lbl_rat_lightning")
 
 class Loadout extends RefCounted:
 	var timer = []
@@ -91,17 +172,13 @@ func _ready():
 		func(oa):
 			xp_total += 1
 			var next_xp = xp_for_level(1 + player_level)
-			print("Total ", xp_total, " Nxp ", next_xp)
-			
 			if xp_total >= xp_for_level(1 + player_level):
-				print("?????Level up")
 				player_level += 1
 				call_deferred("begin_drafting")
 			oa.pickup.emit()
 			oa.queue_free()
 	)
 	ref_progress = get_node("%ui/hud/%card_progress")
-	print("Refprog ", ref_progress)
 
 	ref_cc = get_node("%ui/hud/card_container")
 	ref_lbl_deck = get_node("ui/hud/%lbl_deck")
@@ -140,6 +217,7 @@ func _ready():
 	my_deck.append_array(Library.STARTING_DECK) 
 	for i in HAND_CARDS:
 		draw1()
+	ref_progress.global_position = ref_cc.get_child(0).global_position
 
 	# begin_drafting()
 
@@ -164,7 +242,6 @@ func shoot_afterimage():
 		i.dir = -1
 	else:
 		i.dir = 1	
-	print(i.dir)
 	add_child(i)
 	
 func shoot_sourpatch():
@@ -183,10 +260,14 @@ func play_cards():
 	if my_hand.is_empty():
 		for i in HAND_CARDS:
 			draw1()
+		ref_progress.hide()
 		return
+
+	ref_progress.show()
 
 	var c = my_hand.pop_front()
 	var n = ref_cc.get_child(0)
+	ref_progress.global_position = n.global_position
 	n.reparent(get_node("ui/hud/card_hero"), false)
 	$hero_timer.start(1)
 	do_card_effects(c)
@@ -208,6 +289,10 @@ func _process(delta):
 	var xpfrac = (xp_total - xpbase) / ((xpnext - xpbase) as float)
 	ref_lbl_xp.text = "%d%% to level %d" % [(100 * xpfrac) as int, 1+player_level]
 	ref_bar_xp.value = xpfrac
+
+	ref_rat_heart.text = "%d" % [rat_hearts]
+	ref_rat_cabbage.text =  "%d" % [rat_cabbage]
+	ref_rat_lightning.text = "%d" % [rat_lightning]
 
 	ref_progress.value += 50*delta
 	if ref_progress.value >= 100:
@@ -239,8 +324,20 @@ func heal(x):
 func gain_ms(x):
 	%Player.speed += x
 
+func rat_gain_hearts(x):
+	rat_hearts += x
+	enemy_hp_bonus += 10*x
+func rat_gain_cabbage(x):
+	rat_cabbage += x
+	enemy_dmg_mult += 0.05 * x
+func rat_gain_lightning(x):
+	rat_lightning += x
+	enemy_ms_mult += 0.05 * x
+
+
 func begin_drafting():
 	get_tree().paused = true
+	get_node("%ui/drafting").new_cards()
 	get_node("%ui/drafting").show()
 	get_node("%ui/drafting").process_mode = ProcessMode.PROCESS_MODE_WHEN_PAUSED
 	
@@ -287,15 +384,24 @@ func player_effect_row(cat, color):
 		_:
 			print("?? CARD")
 
+
 func enemy_effect_row(cat, color):
 	match [cat, color]:
-		[Library.CardCategory.GAIN, Library.CardColor.RED]: enemy_hp_bonus += 10
-		[Library.CardCategory.GAIN, Library.CardColor.GREEN]: enemy_dmg_mult += 1.05
-		[Library.CardCategory.GAIN, Library.CardColor.YELLOW]: enemy_ms_mult += 1.05
+		[Library.CardCategory.GAIN, Library.CardColor.RED]: rat_gain_hearts(1)
+		[Library.CardCategory.GAIN, Library.CardColor.GREEN]: rat_gain_cabbage(1)
+		[Library.CardCategory.GAIN, Library.CardColor.YELLOW]: rat_gain_lightning(1)
 
 		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_hearts(1))
 		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_cabbage(1))
 		[Library.CardCategory.SPAWN, Library.CardColor.YELLOW]: spawn_enemy_ring(2, scn_lemon_enemy, func(): %Player.gain_lightning(1))
+
+		#[Library.CardCategory.SHORT, Library.CardColor.RED]: 
+		[Library.CardCategory.SHORT, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_cabbage(1), Library.Weapon.POISON)
+		# [Library.CardCategory.SHORT, Library.CardColor.YELLOW]: 
+
+		[Library.CardCategory.LONG, Library.CardColor.RED]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_hearts(1), Library.Weapon.AFTERIMAGE)
+		#[Library.CardCategory.LONG, Library.CardColor.GREEN]: 
+		[Library.CardCategory.LONG, Library.CardColor.YELLOW]: spawn_enemy_ring(2, scn_lemon_enemy, func(): %Player.gain_lightning(1), Library.Weapon.BONE)
 
 		_:
 			print("?? CARD")

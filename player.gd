@@ -13,8 +13,8 @@ signal hit(dmg)
 
 var health = health_max
 
-@onready var ref_health_bar = get_node("/root/Rootly/ui/hud/health_bar")
-@onready var ref_health_lbl = get_node("/root/Rootly/ui/hud/health_lbl")
+@onready var ref_health_bar = get_node("/root/Rootly/ui/hud/%health_bar")
+@onready var ref_health_lbl = get_node("/root/Rootly/ui/hud/%health_lbl")
 
 @onready var ref_heart_lbl = get_node("/root/Rootly/ui/hud/%lbl_player_heart")
 @onready var ref_cabbage_lbl = get_node("/root/Rootly/ui/hud/%lbl_player_cabbage")
