@@ -88,9 +88,13 @@ func _ready():
 	%Player.get_node("pickup").area_entered.connect(
 		func(oa):
 			xp_total += 1
+			var next_xp = xp_for_level(1 + player_level)
+			print("Total ", xp_total, " Nxp ", next_xp)
+			
 			if xp_total >= xp_for_level(1 + player_level):
+				print("?????Level up")
 				player_level += 1
-			call_deferred("begin_drafting")
+				call_deferred("begin_drafting")
 			oa.pickup.emit()
 			oa.queue_free()
 	)
