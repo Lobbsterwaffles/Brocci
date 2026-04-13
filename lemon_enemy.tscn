@@ -21,11 +21,13 @@ speed = 200
 player_dmg = 50
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1409978779]
+visible = false
 position = Vector2(3.999999, -12)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_0q8qo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=728790027]
+visible = false
 position = Vector2(-2, 22.999998)
 rotation = 0.23826736
 shape = SubResource("CapsuleShape2D_mfbi1")
@@ -40,10 +42,12 @@ position = Vector2(4, -12)
 script = ExtResource("3_p8naj")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurt" unique_id=766863504]
+visible = false
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_0q8qo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt" unique_id=1018953591]
+visible = false
 position = Vector2(-9.999999, 42.999996)
 rotation = 0.23826735
 shape = SubResource("CapsuleShape2D_mfbi1")
@@ -63,10 +67,12 @@ show_percentage = false
 position = Vector2(4, -12)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hit" unique_id=81535020]
+visible = false
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_0q8qo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hit" unique_id=1105056413]
+visible = false
 position = Vector2(-9.999999, 42.999996)
 rotation = 0.23826735
 shape = SubResource("CapsuleShape2D_mfbi1")

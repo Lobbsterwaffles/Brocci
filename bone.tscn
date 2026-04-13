@@ -12,6 +12,7 @@ script = ExtResource("1_y86vo")
 damage = 9999
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=397003253]
+visible = false
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_jhw1f")
 debug_color = Color(1, 0, 0.75, 0.41960785)

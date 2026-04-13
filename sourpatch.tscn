@@ -34,47 +34,55 @@ animations = [{
 script = ExtResource("1_bi51w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=397003253]
+visible = false
 position = Vector2(-81, -72)
 rotation = 0.7853982
 shape = SubResource("CapsuleShape2D_bi51w")
 debug_color = Color(1, 0, 0.75, 0.41960785)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1489798993]
+visible = false
 position = Vector2(75, 95)
 rotation = 0.7853982
 shape = SubResource("CapsuleShape2D_bi51w")
 debug_color = Color(1, 0, 0.75, 0.41960785)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=83202810]
+visible = false
 position = Vector2(-7, -112)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_bi51w")
 debug_color = Color(1, 0, 0.75, 0.41960785)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=31182651]
+visible = false
 position = Vector2(78, -73.00001)
 rotation = 2.6179938
 shape = SubResource("CapsuleShape2D_bi51w")
 debug_color = Color(1, 0, 0.75, 0.41960785)
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="." unique_id=460051913]
+visible = false
 position = Vector2(109, 11)
 shape = SubResource("CapsuleShape2D_bi51w")
 debug_color = Color(1, 0, 0.75, 0.41960785)
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="." unique_id=477199521]
+visible = false
 position = Vector2(0, 131)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_bi51w")
 debug_color = Color(1, 0, 0.75, 0.41960785)
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=27979320]
+visible = false
 position = Vector2(-80, 100.99999)
 rotation = 2.3561945
 shape = SubResource("CapsuleShape2D_bi51w")
 debug_color = Color(1, 0, 0.75, 0.41960785)
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="." unique_id=282033048]
+visible = false
 position = Vector2(-118.00001, 10.999992)
 shape = SubResource("CapsuleShape2D_bi51w")
 debug_color = Color(1, 0, 0.75, 0.41960785)
