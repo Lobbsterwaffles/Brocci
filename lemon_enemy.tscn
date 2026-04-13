@@ -81,3 +81,6 @@ position = Vector2(-176, -136)
 points = PackedVector2Array(5, -8, 21, -24, 37, -8, 21, 8, 5, -8)
 width = 2.0
 end_cap_mode = 1
+
+[node name="weapon_timer" type="Timer" parent="." unique_id=469354675]
+unique_name_in_owner = true

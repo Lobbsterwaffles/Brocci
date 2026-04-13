@@ -17,6 +17,21 @@ var ref_lbl_ms
 var ref_lbl_dmg
 var HAND_CARDS = 4
 
+var xp_total = 0
+var player_level = 0
+var xp_req = [
+	5
+	10
+	20
+	30
+	40
+	50
+]
+
+
+var enemy_hp_bonus = 0
+var enemy_dmg_mult = 1
+var enemy_ms_mult = 1
 
 func spawn_xporb(pos, scn, on_pickup):
 	var xporb = scn_xporb.instantiate()
@@ -32,32 +47,6 @@ func spawn_enemy_ring(n, scn, xporb_effect):
 		e.position = %Player.position + radius * Vector2(cos(angle), sin(angle))
 		e.die.connect(func(pos): spawn_xporb(pos, scn, xporb_effect))
 		add_child(e)
-
-class PoisonTrail:
-	var i = 0
-	var n = 10
-	var pts = []
-	var last = null
-	var scnp = preload("res://poison.tscn")
-
-	func emit(pos):
-		var b = scnp.instantiate()
-		b.position = pos
-
-		if last != null  and last.distance_to(pos) < 30:
-			return null
-
-		var r
-		if i < n:
-			r = b
-			pts.append(b)
-		else:
-			r = null
-			pts[i % n].position = pos
-
-		last = pos
-		i += 1
-		return r
 
 var ptrail  
 		
@@ -81,6 +70,7 @@ func _ready():
 
 	%Player.get_node("pickup").area_entered.connect(
 		func(oa):
+			xp_total += 1 
 			oa.pickup.emit()
 			oa.queue_free()
 	)
@@ -219,10 +209,10 @@ func quit_deckview():
 	get_tree().paused = false
 	
 func do_card_effects(card):
-	do_effect_row(card.top_cat, card.top_color)
-	do_effect_row(card.bot_cat, card.bot_color)
+	player_effect_row(card.top_cat, card.top_color)
+	enemy_effect_row(card.bot_cat, card.bot_color)
 
-func do_effect_row(cat, color):
+func player_effect_row(cat, color):
 	match [cat, color]:
 		[Library.CardCategory.GAIN, Library.CardColor.RED]: gain_max_hp(10)
 		[Library.CardCategory.GAIN, Library.CardColor.GREEN]: gain_max_hp(10)
@@ -231,6 +221,15 @@ func do_effect_row(cat, color):
 		[Library.CardCategory.BUFF, Library.CardColor.RED]: heal(10)
 		[Library.CardCategory.BUFF, Library.CardColor.GREEN]: buff_player_dmg(1.05, 5)
 		[Library.CardCategory.BUFF, Library.CardColor.YELLOW]: buff_player_ms(1.15, 5)
+
+		_:
+			print("?? CARD")
+
+func enemy_effect_row(cat, color):
+	match [cat, color]:
+		[Library.CardCategory.GAIN, Library.CardColor.RED]: enemy_hp_bonus += 10
+		[Library.CardCategory.GAIN, Library.CardColor.GREEN]: enemy_dmg_mult += 1.05
+		[Library.CardCategory.GAIN, Library.CardColor.YELLOW]: enemy_ms_mult += 1.05
 
 		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_hearts(1))
 		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_cabbage(1))
