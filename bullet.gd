@@ -3,6 +3,7 @@ extends Area2D
 
 @export var damage = 35
 var velocity = Vector2.RIGHT
+var shot_by_enemy = false
 
 func _physics_process(delta):
 	position += velocity * delta

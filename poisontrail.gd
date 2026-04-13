@@ -25,3 +25,4 @@ func emit(pos):
 	last = pos
 	i += 1
 	return r
+
