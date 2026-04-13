@@ -43,7 +43,7 @@ func spawn_enemy_ring(n, scn, xporb_effect):
 	for i in range(n):
 		var e = scn.instantiate()
 		var angle = 2 * PI * randf()
-		var radius = 200 + 20 * randf()
+		var radius = 400 + 20 * randf()
 		e.position = %Player.position + radius * Vector2(cos(angle), sin(angle))
 		e.die.connect(func(pos): spawn_xporb(pos, scn, xporb_effect))
 		add_child(e)

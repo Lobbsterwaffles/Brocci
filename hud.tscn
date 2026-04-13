@@ -3,9 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://becmadsvynef3" path="res://Sprites/heart.png" id="1_8sq4i"]
 [ext_resource type="Texture2D" uid="uid://crj4enkfd0l57" path="res://Sprites/cabbage.png" id="2_640wx"]
 [ext_resource type="Texture2D" uid="uid://brqiw81igk8ig" path="res://Sprites/lihgtning.png" id="3_a2258"]
+[ext_resource type="Theme" uid="uid://casqdwho1ldl8" path="res://UI/menu_theme.tres" id="4_a2258"]
+[ext_resource type="Texture2D" uid="uid://bcqtk4sy8etw0" path="res://UI/deck.png" id="5_1xsix"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2snw"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_rftc2"]
 
 [node name="hud" type="Control" unique_id=1462350320]
 layout_mode = 3
@@ -19,35 +23,32 @@ metadata/_edit_use_anchors_ = true
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1286720724]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.7847222
-anchor_top = -1.0
-anchor_right = 0.9930556
-anchor_bottom = -0.8014706
+anchor_top = -0.6911765
+anchor_right = 0.20833333
+anchor_bottom = -0.49264705
 grow_horizontal = 2
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="card_container" type="HBoxContainer" parent="." unique_id=371928176]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.21276368
+anchor_top = -0.1764706
+anchor_right = 0.7647569
 anchor_bottom = 1.0
-offset_left = 38.0
-offset_top = -289.0
-offset_right = -271.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 30
+metadata/_edit_use_anchors_ = true
 
 [node name="card_hero" type="VBoxContainer" parent="." unique_id=1818059824]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.7777778
-anchor_top = -2.8235295
-anchor_right = 0.9578334
-anchor_bottom = -0.41135293
-offset_bottom = -0.055999756
+anchor_left = 0.036458332
+anchor_top = -1.0
+anchor_right = 0.15277778
+anchor_bottom = 0.5580471
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -65,12 +66,13 @@ offset_bottom = -0.06398773
 metadata/_edit_use_anchors_ = true
 
 [node name="health_bar" type="ProgressBar" parent="." unique_id=1300139619]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.7847222
-anchor_top = -0.706353
-anchor_right = 0.99288887
-anchor_bottom = -0.50735295
+anchor_left = 0.35850695
+anchor_top = -3.5372355
+anchor_right = 0.5666736
+anchor_bottom = -3.3382354
 offset_top = 0.06401062
 offset_right = 0.19198608
 theme_override_styles/fill = SubResource("StyleBoxFlat_n2snw")
@@ -81,10 +83,10 @@ metadata/_edit_use_anchors_ = true
 [node name="health_lbl" type="Label" parent="." unique_id=521148478]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.8612778
-anchor_top = -0.7058824
-anchor_right = 0.9171111
-anchor_bottom = -0.53635293
+anchor_left = 0.43506253
+anchor_top = -3.5367646
+anchor_right = 0.49089587
+anchor_bottom = -3.3672352
 offset_left = -0.1920166
 offset_right = -0.51200867
 offset_bottom = -0.055992126
@@ -115,25 +117,14 @@ metadata/_edit_use_anchors_ = true
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1948235415]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.7847222
-anchor_top = 0.1764706
-anchor_right = 0.9930556
-anchor_bottom = 0.7647059
+anchor_top = -1.6544118
+anchor_right = 0.20833333
+anchor_bottom = -1.0661764
 metadata/_edit_use_anchors_ = true
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer" unique_id=370635663]
 layout_mode = 2
 columns = 2
-
-[node name="Label" type="Label" parent="PanelContainer/GridContainer" unique_id=490739994]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Deck"
-
-[node name="lbl_deck" type="Label" parent="PanelContainer/GridContainer" unique_id=60099378]
-unique_name_in_owner = true
-layout_mode = 2
-text = "X/Y"
 
 [node name="Label3" type="Label" parent="PanelContainer/GridContainer" unique_id=204652363]
 layout_mode = 2
@@ -154,12 +145,65 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "XYZ"
 
+[node name="Rat_resources" type="GridContainer" parent="." unique_id=1701456305]
+layout_mode = 0
+anchor_left = 0.9027778
+anchor_top = -0.1764706
+anchor_right = 0.9704861
+anchor_bottom = 0.88880044
+offset_right = 29.677612
+offset_bottom = 55.12314
+scale = Vector2(0.7243843, 0.7243843)
+columns = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Rat_resources" unique_id=862261775]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_8sq4i")
+stretch_mode = 4
+
+[node name="lbl_rat_heart" type="Label" parent="Rat_resources" unique_id=873659141]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "H"
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Rat_resources" unique_id=1934577502]
+layout_mode = 2
+texture = ExtResource("2_640wx")
+stretch_mode = 4
+
+[node name="lbl_rat_cabbage" type="Label" parent="Rat_resources" unique_id=1260874296]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "C"
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Rat_resources" unique_id=2136400756]
+layout_mode = 2
+texture = ExtResource("3_a2258")
+stretch_mode = 4
+
+[node name="lbl_rat_lightning" type="Label" parent="Rat_resources" unique_id=854448631]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "L"
+vertical_alignment = 1
+
 [node name="player_resources" type="GridContainer" parent="." unique_id=290481965]
 layout_mode = 0
-offset_top = -512.0
-offset_right = 96.0
-offset_bottom = -312.0
+anchor_top = -3.125
+anchor_right = 0.083333336
+anchor_bottom = -1.6544118
 columns = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="player_resources" unique_id=1480120768]
 layout_mode = 2
@@ -212,3 +256,46 @@ anchor_right = 0.9930556
 anchor_bottom = -1.0661764
 text = "drafting"
 metadata/_edit_use_anchors_ = true
+
+[node name="Deck" type="GridContainer" parent="." unique_id=1249496754]
+layout_mode = 0
+anchor_left = 0.7647569
+anchor_top = -0.1764706
+anchor_right = 0.906614
+anchor_bottom = 1.0251417
+offset_right = -30.419312
+offset_bottom = -18.419281
+scale = Vector2(0.31917825, 0.31917825)
+theme = ExtResource("4_a2258")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Deck" unique_id=1862551234]
+layout_mode = 2
+texture = ExtResource("5_1xsix")
+
+[node name="lbl_deck" type="Label" parent="Deck/TextureRect" unique_id=1979500990]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 166.05142
+offset_right = 220.27829
+offset_bottom = 14.999996
+scale = Vector2(3.9288073, 3.9288073)
+theme = SubResource("Theme_rftc2")
+text = "X/Y"
+horizontal_alignment = 1
+
+[node name="ProgressBar2" type="ProgressBar" parent="." unique_id=1391239447]
+layout_mode = 0
+offset_left = 529.0
+offset_top = -445.0
+offset_right = 533.0
+offset_bottom = -418.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=2080021181]
+layout_mode = 0
+offset_left = 254.0
+offset_top = -8.999998
+offset_right = 294.0
+offset_bottom = 31.000002
+scale = Vector2(1.9404256, 1.9404256)
+fill_mode = 4
