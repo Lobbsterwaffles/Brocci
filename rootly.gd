@@ -246,7 +246,7 @@ func shoot_afterimage():
 	
 func shoot_sourpatch():
 	var sou = scn_sourpatch.instantiate()
-	add_child(sou)
+	%Player.add_child(sou)
 
 func shoot_cuke():
 	var cuke = scn_cuke.instantiate()
