@@ -40,13 +40,17 @@ func spawn_xporb(pos, scn, on_pickup):
 
 var enemy_bullet_tint = Color(1, 0.6, 0.6, 1)
 
-func spawn_enemy_ring(n, scn, xporb_effect):
+func spawn_enemy_ring(n, scn, xporb_effect, weapon = null):
 	for i in range(n):
 		var e = scn.instantiate()
 		var angle = 2 * PI * randf()
 		var radius = 400 + 20 * randf()
 		e.position = %Player.position + radius * Vector2(cos(angle), sin(angle))
 		e.die.connect(func(pos): spawn_xporb(pos, scn, xporb_effect))
+
+		if weapon == null:
+			add_child(e)
+			return
 
 		var eloadout = Loadout.new()
 		var etrail = PoisonTrail.new()
@@ -57,10 +61,12 @@ func spawn_enemy_ring(n, scn, xporb_effect):
 				enemy_shoot_poison(e, etrail)
 		)
 		eloadout.timer[Library.Weapon.BONE].timeout.connect(enemy_shoot_bone.bind(e))
-		## 
+		eloadout.timer[Library.Weapon.AFTERIMAGE].timeout.connect(enemy_shoot_afterimage.bind(e))
+
+
 		add_child(e)
-		# eloadout.levelup_weapon(Library.Weapon.POISON)
-		eloadout.levelup_weapon(Library.Weapon.BONE)
+
+		eloadout.levelup_weapon(weapon)
 		
 func enemy_shoot_poison(e, etrail):
 	var pel = etrail.emit(e.global_position)
@@ -85,8 +91,33 @@ func enemy_shoot_bone(e):
 	var pa = TAU * randf()
 	var prv = 200 * Vector2(cos(pa), sin(pa))
 	b.velocity = prv
+	b.area_entered.connect(
+		func(oa):
+			if oa is not PlayerHurtbox:
+				return
+			%Player.take_damage(b.damage)
+			b.on_hit()
+	)
 	e.tree_exiting.connect(b.queue_free)
 	add_child(b)
+
+func enemy_shoot_afterimage(e):
+	var i = scn_afterimage.instantiate()
+	i.position = e.global_position
+	i.shot_by_enemy = true
+	i.modulate = enemy_bullet_tint
+	if %Player.velocity.x < 0:
+		i.dir = -1
+	else:
+		i.dir = 1	
+	i.area_entered.connect(
+		func(oa):
+			if oa is not PlayerHurtbox:
+				return
+			%Player.take_damage(i.damage)
+			i.on_hit()
+	)
+	add_child(i)
 
 
 var ptrail  
@@ -147,7 +178,6 @@ func _ready():
 			oa.queue_free()
 	)
 	ref_progress = get_node("%ui/hud/%card_progress")
-	print("Refprog ", ref_progress)
 
 	ref_cc = get_node("%ui/hud/card_container")
 	ref_lbl_deck = get_node("ui/hud/%lbl_deck")
@@ -210,7 +240,6 @@ func shoot_afterimage():
 		i.dir = -1
 	else:
 		i.dir = 1	
-	print(i.dir)
 	add_child(i)
 	
 func shoot_sourpatch():
@@ -226,7 +255,6 @@ func play_cards():
 		return
 
 	ref_progress.show()
-
 
 	var c = my_hand.pop_front()
 	var n = ref_cc.get_child(0)
@@ -357,6 +385,14 @@ func enemy_effect_row(cat, color):
 		[Library.CardCategory.SPAWN, Library.CardColor.RED]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_hearts(1))
 		[Library.CardCategory.SPAWN, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_cabbage(1))
 		[Library.CardCategory.SPAWN, Library.CardColor.YELLOW]: spawn_enemy_ring(2, scn_lemon_enemy, func(): %Player.gain_lightning(1))
+
+		#[Library.CardCategory.SHORT, Library.CardColor.RED]: 
+		[Library.CardCategory.SHORT, Library.CardColor.GREEN]: spawn_enemy_ring(2, scn_enemy, func(): %Player.gain_cabbage(1), Library.Weapon.POISON)
+		# [Library.CardCategory.SHORT, Library.CardColor.YELLOW]: 
+
+		[Library.CardCategory.LONG, Library.CardColor.RED]: spawn_enemy_ring(2, scn_other_enemy, func(): %Player.gain_hearts(1), Library.Weapon.AFTERIMAGE)
+		#[Library.CardCategory.LONG, Library.CardColor.GREEN]: 
+		[Library.CardCategory.LONG, Library.CardColor.YELLOW]: spawn_enemy_ring(2, scn_lemon_enemy, func(): %Player.gain_lightning(1), Library.Weapon.BONE)
 
 		_:
 			print("?? CARD")
