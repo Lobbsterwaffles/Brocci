@@ -49,3 +49,19 @@ offset_top = 115.0
 offset_right = 149.0
 offset_bottom = 146.0
 text = "RESUME"
+
+[node name="Button" type="Button" parent="Panel" unique_id=128643058]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 155.0
+offset_right = 142.0
+offset_bottom = 178.0
+text = "RETRY"
+
+[node name="Button2" type="Button" parent="Panel" unique_id=1055114994]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 189.0
+offset_right = 133.0
+offset_bottom = 212.0
+text = "QUIT"

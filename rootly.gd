@@ -11,6 +11,7 @@ var scn_bone = preload("res://bone.tscn")
 var scn_xporb = preload("res://xporb.tscn")
 var scn_sourpatch = preload("res://sourpatch.tscn")
 var scn_afterimage = preload("res://afterimage.tscn")
+var scn_cuke = preload("res://cuke.tscn")
 
 var ref_progress
 var ref_cc

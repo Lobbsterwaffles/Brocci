@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://i8002ydewigg"]
+
+[ext_resource type="Script" uid="uid://cos225edupqq1" path="res://cuke.gd" id="1_ka7ax"]
+[ext_resource type="Texture2D" uid="uid://c44d82ehy7fa2" path="res://Sprites/Effects/cuke2.png" id="2_id0mm"]
+[ext_resource type="Texture2D" uid="uid://ddigsv0ulkc1w" path="res://Sprites/Effects/cuke0.png" id="3_kscy5"]
+[ext_resource type="Texture2D" uid="uid://dr6o86ph68eoj" path="res://Sprites/Effects/cuke1.png" id="4_6pyop"]
+[ext_resource type="Texture2D" uid="uid://dfjyl0okf6aft" path="res://Sprites/Effects/cuke3.png" id="5_c3vgr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1fdpg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_id0mm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kscy5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6pyop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c3vgr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ka7ax"]
+radius = 40.0
+height = 102.0
+
+[node name="Cuke" type="Area2D" unique_id=81593008]
+script = ExtResource("1_ka7ax")
+metadata/_custom_type_script = "uid://bxxnf2oioinf0"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1884649206]
+sprite_frames = SubResource("SpriteFrames_1fdpg")
+frame = 3
+frame_progress = 0.9028116
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1950914779]
+position = Vector2(-2, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ka7ax")
