@@ -17,19 +17,15 @@ var ref_cc
 var ref_lbl_deck
 var ref_lbl_ms
 var ref_lbl_dmg
+var ref_lbl_xp
+var ref_bar_xp
 var HAND_CARDS = 4
 
 var xp_total = 0
-var player_level = 0
-var xp_req = [
-	5,
-	10,
-	20,
-	30,
-	40,
-	50,
-]
+var player_level = 1
 
+func xp_for_level(x):
+	return 5 * x * x - 5 * x
 
 var enemy_hp_bonus = 0
 var enemy_dmg_mult = 1
@@ -73,7 +69,6 @@ class Loadout extends RefCounted:
 
 var the_loadout = Loadout.new()
 
-
 func shoot_poison():
 	var pel = ptrail.emit(%Player.position)
 	if pel:
@@ -92,15 +87,21 @@ func _ready():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	%Player.get_node("pickup").area_entered.connect(
 		func(oa):
-			xp_total += 1 
+			xp_total += 1
+			if xp_total >= xp_for_level(1 + player_level):
+				player_level += 1
 			oa.pickup.emit()
 			oa.queue_free()
 	)
-	ref_progress = get_node("%ui/hud/ProgressBar")
+	ref_progress = get_node("%ui/hud/%card_progress")
+	print("Refprog ", ref_progress)
+
 	ref_cc = get_node("%ui/hud/card_container")
 	ref_lbl_deck = get_node("ui/hud/%lbl_deck")
 	ref_lbl_ms = get_node("ui/hud/%lbl_ms")
 	ref_lbl_dmg = get_node("ui/hud/%lbl_dmg")
+	ref_lbl_xp = get_node("ui/hud/%xp_lbl")
+	ref_bar_xp = get_node("ui/hud/%bar_xp")
 
 	process_mode = ProcessMode.PROCESS_MODE_INHERIT
 
@@ -139,7 +140,6 @@ func on_card_chosen(c):
 	my_deck.append(c)
 
 func shoot_bone():
-	print( "Shb one")
 	var b = scn_bone.instantiate()
 	b.position = %Player.position
 	# var pa = %Player.rotation
@@ -186,6 +186,12 @@ func _process(delta):
 	ref_lbl_deck.text = "%d / %d" % [my_deck.size(), my_discard.size()]
 	ref_lbl_ms.text = "%d" % [%Player.speed]
 	ref_lbl_dmg.text = "%d%%" % [(100 * %Player.dmg_mult) as int]
+	
+	var xpbase = xp_for_level(player_level)
+	var xpnext = xp_for_level(1 + player_level)
+	var xpfrac = (xp_total - xpbase) / ((xpnext - xpbase) as float)
+	ref_lbl_xp.text = "%d%% to level %d" % [(100 * xpfrac) as int, 1+player_level]
+	ref_bar_xp.value = xpfrac
 
 	ref_progress.value += 50*delta
 	if ref_progress.value >= 100:
