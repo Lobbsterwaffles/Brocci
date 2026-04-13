@@ -27,6 +27,7 @@ unique_name_in_owner = true
 script = ExtResource("2_6hd3o")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurt" unique_id=766863504]
+visible = false
 position = Vector2(-1.5, -1.5)
 shape = SubResource("RectangleShape2D_6hd3o")
 
@@ -44,6 +45,7 @@ show_percentage = false
 [node name="Hit" type="Area2D" parent="." unique_id=29544183]
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Hit" unique_id=761087438]
+visible = false
 position = Vector2(-1.5, -1.5)
 shape = SubResource("RectangleShape2D_6hd3o")
 
@@ -58,6 +60,7 @@ unique_name_in_owner = true
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="notice" unique_id=461452061]
+visible = false
 shape = SubResource("CircleShape2D_6hd3o")
 debug_color = Color(0, 0.6, 0.69803923, 0.105882354)
 

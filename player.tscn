@@ -49,6 +49,7 @@ frame = 2
 frame_progress = 0.16108285
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=213662297]
+visible = false
 position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_sh265")
 
@@ -59,6 +60,7 @@ monitoring = false
 script = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt" unique_id=124356878]
+visible = false
 position = Vector2(1, -1)
 shape = SubResource("CapsuleShape2D_sweqy")
 debug_color = Color(0.93121403, 0.17613643, 0.49433208, 0.41960785)
@@ -70,5 +72,6 @@ collision_mask = 8
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pickup" unique_id=1878386408]
+visible = false
 shape = SubResource("CircleShape2D_onrkg")
 debug_color = Color(0, 0.62200165, 0.5523798, 0.41960785)

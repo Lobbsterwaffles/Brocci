@@ -12,6 +12,7 @@ var scn_xporb = preload("res://xporb.tscn")
 var scn_sourpatch = preload("res://sourpatch.tscn")
 var scn_afterimage = preload("res://afterimage.tscn")
 var scn_cuke = preload("res://cuke.tscn")
+var scn_heartslash = preload("res://heart.tscn")
 
 var ref_progress
 var ref_cc
@@ -116,7 +117,8 @@ func _ready():
 	the_loadout.timer[Library.Weapon.POISON].timeout.connect(shoot_poison)
 	the_loadout.timer[Library.Weapon.AFTERIMAGE].timeout.connect(shoot_afterimage)
 	the_loadout.timer[Library.Weapon.SOURPATCH].timeout.connect(shoot_sourpatch)
-	#the_loadout.timer[Library.Weapon.HEARTSLASH].timeout.connect(shoot_heartslash)
+	the_loadout.timer[Library.Weapon.HEARTSLASH].timeout.connect(shoot_heartslash)
+	the_loadout.timer[Library.Weapon.CUKE].timeout.connect(shoot_cuke)
 
 	for t in the_loadout.timer:
 		add_child(t)
@@ -168,6 +170,13 @@ func shoot_afterimage():
 func shoot_sourpatch():
 	var sou = scn_sourpatch.instantiate()
 	add_child(sou)
+
+func shoot_cuke():
+	var cuke = scn_cuke.instantiate()
+	add_child(cuke)
+	
+func shoot_heartslash():
+	var hs = scn_heartslash.instantiate()
 
 func play_cards():
 	ref_progress.value = 0
@@ -267,7 +276,7 @@ func player_effect_row(cat, color):
 		[Library.CardCategory.BUFF, Library.CardColor.GREEN]: buff_player_dmg(1.05, 5)
 		[Library.CardCategory.BUFF, Library.CardColor.YELLOW]: buff_player_ms(1.15, 5)
 		
-		#[Library.CardCategory.SHORT, Library.CardColor.RED]: the_loadout.levelup_weapon(Library.Weapon.HEARTSLASH)
+		[Library.CardCategory.SHORT, Library.CardColor.RED]: the_loadout.levelup_weapon(Library.Weapon.HEARTSLASH)
 		[Library.CardCategory.SHORT, Library.CardColor.GREEN]: the_loadout.levelup_weapon(Library.Weapon.POISON)
 		[Library.CardCategory.SHORT, Library.CardColor.YELLOW]: the_loadout.levelup_weapon(Library.Weapon.SOURPATCH)
 
