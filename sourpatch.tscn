@@ -91,5 +91,6 @@ debug_color = Color(1, 0, 0.75, 0.41960785)
 position = Vector2(-5.421011e-20, -9.536743e-07)
 scale = Vector2(0.3125, 0.3125)
 sprite_frames = SubResource("SpriteFrames_k83p6")
+autoplay = "default"
 frame = 3
 frame_progress = 0.0972526
